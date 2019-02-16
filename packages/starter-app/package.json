@@ -1,0 +1,36 @@
+{
+  "name": "@appfocused/starter-app",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@appfocused/common": "^0.0.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "peerDependencies": {
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  },
+  "devDependencies": {
+    "@appfocused/build-scripts": "0.0.0",
+    "@types/node": "11.9.4",
+    "@types/react": "16.8.3",
+    "@types/react-dom": "16.8.1",
+    "cache-loader": "^2.0.1",
+    "jest": "^24.1.0",
+    "typescript": "3.3.3",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "3.2.1"
+  }
+}

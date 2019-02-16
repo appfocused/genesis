@@ -1,0 +1,15 @@
+{
+  "name": "@appfocused/genesis",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.11.1",
+    "prettier": "^1.16.4",
+    "yarn": "1.13.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

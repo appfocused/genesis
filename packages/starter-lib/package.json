@@ -1,0 +1,18 @@
+{
+  "name": "@appfocused/starter-lib",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@appfocused/common": "^0.0.0"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@appfocused/build-scripts": "0.0.0",
+    "cache-loader": "^2.0.1",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  }
+}
