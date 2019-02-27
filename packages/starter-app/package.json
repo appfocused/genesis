@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@appfocused/common": "^0.0.0",
+    "@appfocused/eslint-config": "^0.0.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2"
   },
@@ -17,16 +18,13 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "peerDependencies": {
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2"
-  },
   "devDependencies": {
     "@appfocused/build-scripts": "0.0.0",
     "@types/node": "11.9.4",
     "@types/react": "16.8.3",
     "@types/react-dom": "16.8.1",
     "cache-loader": "^2.0.1",
+    "eslint": "5.14.1",
     "jest": "^24.1.0",
     "typescript": "3.3.3",
     "webpack": "^4.29.3",

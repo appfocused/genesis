@@ -1,0 +1,6 @@
+{
+  "extends": "@appfocused/eslint-config",
+  "rules": {
+    "no-console": "off"
+  }
+}

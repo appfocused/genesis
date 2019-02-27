@@ -25,7 +25,7 @@ module.exports = options => ({
 
   module: {
     rules: [
-      require('./loaders/tslint')(),
+      require('./loaders/eslint')(),
       require('./loaders/typescript')(),
       require('./loaders/typed-css')(),
       require('./loaders/css')({ hasModules: false, isEnvProduction: false }),

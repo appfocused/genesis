@@ -7,12 +7,14 @@
     "@appfocused/common": "^0.0.0"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "type-declarations": "tsc --emitDeclarationOnly"
   },
   "devDependencies": {
     "@appfocused/build-scripts": "0.0.0",
     "cache-loader": "^2.0.1",
     "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "typescript": "3.3.3"
   }
 }

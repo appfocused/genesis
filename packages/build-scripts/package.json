@@ -20,6 +20,8 @@
     "postcss-preset-env": "6.5.0",
     "typescript": "3.3.3",
     "typed-css-modules-loader": "0.0.17",
+    "eslint": "5.14.1",
+    "eslint-loader": "2.1.2",
     "tslint": "5.13.0",
     "tslint-loader": "3.5.4",
     "webpack": "4.29.5",

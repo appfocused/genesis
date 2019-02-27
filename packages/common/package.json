@@ -1,31 +1,25 @@
 {
-    "name": "@appfocused/common",
-    "version": "0.0.0",
-    "main": "lib/cjs",
-    "module": "lib/esm",
-    "esnext": "lib/esnext",
-    "types": "lib/types",
-    "license": "MIT",
-    "scripts": {
-        "build": "run-p clean compile",
-        "clean": "rm -rf dist && rm -rf lib",
-        "compile": "run-p \"compile:*\"",
-        "compile:esm": "tsc --outDir lib/esm",
-        "compile:cjs": "tsc -m commonjs --outDir lib/cjs",
-        "compile:esnext": "tsc -t esnext --outDir lib/esnext",
-        "dev": "run-p \"compile:esm -- --watch\""
-    },
-    "peerDependencies": {
-        "react": "^16.8.1",
-        "react-dom": "^16.8.1"
-    },
-    "devDependencies": {
-        "cache-loader": "^2.0.1",
-        "npm-run-all": "^4.1.5",
-        "react": "^16.8.1",
-        "react-dom": "^16.8.1",
-        "typescript": "^3.3.3",
-        "webpack": "^4.29.3",
-        "webpack-cli": "^3.2.3"
-    }
+  "name": "@appfocused/common",
+  "version": "0.0.0",
+  "main": "lib/cjs",
+  "module": "lib/esm",
+  "esnext": "lib/esnext",
+  "types": "lib/types",
+  "license": "MIT",
+  "scripts": {
+    "build": "run-p clean compile",
+    "clean": "rm -rf dist && rm -rf lib",
+    "compile": "run-p \"compile:*\"",
+    "compile:esm": "tsc --outDir lib/esm",
+    "compile:cjs": "tsc -m commonjs --outDir lib/cjs",
+    "compile:esnext": "tsc -t esnext --outDir lib/esnext",
+    "dev": "run-p \"compile:esm -- --watch\""
+  },
+  "devDependencies": {
+    "cache-loader": "^2.0.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^3.3.3",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  }
 }
