@@ -8,11 +8,15 @@ module.exports = {
   },
   globals: {
     document: false,
-    console: false
+    console: false,
+    module: false,
+    require: false
   },
   rules: {
     '@typescript-eslint/explicit-member-accessibility': 0,
     '@typescript-eslint/indent': ['error', 2],
-    '@typescript-eslint/explicit-function-return-type': 0
+    '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/no-unused-vars': 0,
+    '@typescript-eslint/no-var-requires': 0
   }
 };
