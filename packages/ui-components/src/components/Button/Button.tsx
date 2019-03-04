@@ -1,10 +1,15 @@
 import * as React from 'react';
-import * as styles from './Button.module.css';
+import { makeStyles, createStyles } from '@material-ui/styles';
+import { useStyles } from './Button.style';
 
-interface Props {
+export interface Props {
   buttonText: string;
+  border?: boolean;
+  borderRadius?: number;
+  test?: boolean;
 }
 
 export const Button = (props: Props) => {
-  return <button className={styles.button}>{props.buttonText}</button>;
+  const classes = useStyles(props);
+  return <button className={classes.root}>{props.buttonText}</button>;
 };
