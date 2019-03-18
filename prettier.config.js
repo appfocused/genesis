@@ -1,5 +1,5 @@
 module.exports = {
-    singleQuote: true,
-    printWidth: 100,
-    proseWrap: 'always'
+  singleQuote: true,
+  printWidth: 100,
+  proseWrap: 'always'
 };

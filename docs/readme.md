@@ -1,5 +1,9 @@
 # Genesis
 
+### ToDo
+
+[] Reusable tsconfig
+
 ### References and inspiration
 
 - https://github.com/palantir/blueprint
