@@ -9,3 +9,5 @@ interface Props {
 export const ThemeProvider = (props: Props) => {
   return <MUIThemeProvider theme={props.theme}>{props.children}</MUIThemeProvider>;
 };
+
+export * from './defaultTheme';

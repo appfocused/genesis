@@ -1,0 +1,44 @@
+{
+  "name": "@appfocused/css-js-normalize",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/es",
+  "dependencies": {
+    "@material-ui/styles": "^3.0.0-alpha.10",
+    "@material-ui/core": "3.9.2",
+    "jss": "9.8.7"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn emit-types:es && yarn emit-types:cjs",
+    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel -s --source-map --extensions '.ts,.tsx' ./src --out-dir ./dist --copy-files --ignore \"**/*.d.ts\"",
+    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel -s --source-map --extensions '.ts,.tsx' ./src --out-dir ./dist/esm --copy-files --ignore \"**/*.d.ts\"",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel -s --source-map --extensions '.ts,.tsx' ./src --out-dir ./dist/es --copy-files --ignore \"**/*.d.ts\"",
+    "emit-types": "yarn emit-types:es && yarn emit-types:cjs",
+    "emit-types:es": "tsc --declaration --emitDeclarationOnly --listEmittedFiles --jsx react --outDir dist/es",
+    "emit-types:cjs": "tsc --declaration --emitDeclarationOnly --listEmittedFiles --jsx react --outDir dist",
+    "dev": "concurrently --raw --kill-others 'yarn build:es --watch' 'yarn emit-types:es --watch'"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@appfocused/eslint-config": "^0.0.0",
+    "@appfocused/build-scripts": "^0.0.0",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "7.3.3",
+    "@babel/plugin-proposal-class-properties": "7.3.3",
+    "@babel/plugin-proposal-object-rest-spread": "7.3.2",
+    "@babel/preset-env": "7.3.1",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.3.3",
+    "babel-plugin-module-resolver": "3.2.0",
+    "@material-ui/styles": "3.0.0-alpha.10",
+    "cross-env": "5.2.0",
+    "concurrently": "4.1.0",
+    "rimraf": "2.6.3",
+    "yarn": "1.13.0",
+    "typescript": "3.3.3"
+  }
+}
