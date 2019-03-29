@@ -4,41 +4,43 @@ import clsx from 'clsx';
 import { useStyles } from './Button.style';
 import { InputControlHandlers, Intent } from '../../interfaces';
 
-type ButtonType = 'submit' | 'button' | 'reset';
-
-export interface Props extends InputControlHandlers {
+export type Props = {
   children: React.ReactNode;
   className?: string;
-  type?: ButtonType;
-  isFullWidth?: boolean;
+  type?: 'submit' | 'button' | 'reset';
+  fullWidth?: boolean;
   disabled?: boolean;
-  color?: Intent;
-  size?: 'large' | 'small';
+  intent?: Intent;
+  size?: 'small' | 'medium' | 'large';
+  variant?: 'text' | 'outlined' | 'filled';
+} & InputControlHandlers;
 
-  // variant
-}
-
-export const Button = (props: Props) => {
+const Button = (props: Props) => {
   const classes = useStyles(props);
   const {
     children,
     className: classNameProp = '',
-    color = Intent.Default,
+    intent = Intent.Default,
     disabled,
-    isFullWidth,
+    fullWidth,
     size,
     type,
+    variant,
     ...restProps
   } = props;
 
   const className = clsx(
     classes.root,
     {
-      [classes.fullWidth]: isFullWidth,
-      [classes.primary]: color === Intent.Primary,
-      [classes.secondary]: color === Intent.Secondary,
+      [classes.fullWidth]: fullWidth,
+      [classes.default]: intent === Intent.Default,
+      [classes.primary]: intent === Intent.Primary,
+      [classes.secondary]: intent === Intent.Secondary,
       [classes.large]: size === 'large',
-      [classes.small]: size === 'small'
+      [classes.small]: size === 'small',
+      [classes.text]: variant === 'text',
+      [classes.outlined]: variant === 'outlined',
+      [classes.filled]: variant === 'filled'
     },
     classNameProp
   );
@@ -49,3 +51,5 @@ export const Button = (props: Props) => {
     </button>
   );
 };
+
+export default Button;

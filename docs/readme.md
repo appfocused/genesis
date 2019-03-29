@@ -2,7 +2,8 @@
 
 ### ToDo
 
-[] Reusable tsconfig
+[] Reusable tsconfig  
+[] focus-visible polifill for ui-components https://github.com/WICG/focus-visible
 
 ### References and inspiration
 
