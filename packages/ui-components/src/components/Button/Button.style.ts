@@ -6,7 +6,6 @@ import {} from '@material-ui/core/styles';
 import { defaultTheme } from '../ThemeProvider';
 import { normalizedButton } from '../../normalize/button';
 import { Palette } from '@material-ui/core/styles/createPalette';
-
 // import * as button from '@appfocused/css-js-normalize/dist/es/button';
 
 const colors = {
