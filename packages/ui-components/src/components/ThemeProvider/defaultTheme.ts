@@ -1,5 +1,4 @@
 import { Theme, createMuiTheme } from '@material-ui/core';
-import { indigo, pink, grey } from '@material-ui/core/colors';
 
 export const defaultTheme: Theme = createMuiTheme({
   palette: {
@@ -23,11 +22,5 @@ export const defaultTheme: Theme = createMuiTheme({
     borderRadius: 8
   },
 
-  spacing: {
-    unit: 8
-  },
-
-  typography: {
-    useNextVariants: true
-  }
+  spacing: 8
 });

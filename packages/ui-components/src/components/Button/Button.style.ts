@@ -36,13 +36,7 @@ const getButtonIntent = (
 });
 
 const styles = (theme: Theme) => {
-  const {
-    palette,
-    spacing: { unit },
-    typography,
-    transitions,
-    shape
-  } = theme;
+  const { palette, spacing, typography, transitions, shape } = theme;
 
   const defaultColor = '#333333';
 
@@ -51,9 +45,9 @@ const styles = (theme: Theme) => {
       ...normalizedButton,
       ...typography.button,
       boxSizing: 'border-box',
-      minWidth: unit * 8,
-      margin: `${unit}px`,
-      padding: `${unit}px ${unit * 2}px`,
+      minWidth: spacing(8),
+      margin: spacing(1),
+      padding: spacing(1, 2),
       borderRadius: shape.borderRadius,
       color: palette.getContrastText(defaultColor),
       transition: transitions.create(['background-color', 'box-shadow', 'border'], {
@@ -81,13 +75,13 @@ const styles = (theme: Theme) => {
     },
 
     small: {
-      padding: `${unit}px ${unit * 2}px`,
+      padding: spacing(1, 2),
       minWidth: 64,
       fontSize: typography.pxToRem(13)
     },
 
     large: {
-      padding: `${unit}px ${unit * 3}px`,
+      padding: spacing(1, 3),
       fontSize: typography.pxToRem(15)
     },
 
@@ -97,4 +91,4 @@ const styles = (theme: Theme) => {
   });
 };
 
-export const useStyles = makeStyles<any>(styles, { defaultTheme } as any);
+export const useStyles = makeStyles(styles, { defaultTheme });
