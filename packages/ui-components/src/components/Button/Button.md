@@ -21,3 +21,9 @@
   <Button disabled variant="outlined">Disabled</Button>
 </div>
 ```
+
+## Full Width
+
+```
+<Button fullWidth>Full Width</Button>
+```

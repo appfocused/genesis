@@ -69,9 +69,9 @@ const styles = (theme: Theme) => {
       }
     }),
 
-    fullWidth: {
+    fullWidth: props => ({
       width: '100%'
-    },
+    }),
 
     small: {
       padding: spacing(1, 2),
