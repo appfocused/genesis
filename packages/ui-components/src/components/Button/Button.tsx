@@ -1,9 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import { useStyles } from './Buttons.style';
+import { useStyles } from './Button.style';
 import { InputControlHandlers, Intent } from '../../interfaces';
-import { StylesContext } from '@material-ui/styles/StylesProvider';
 
 export type Props = {
   children: React.ReactNode;

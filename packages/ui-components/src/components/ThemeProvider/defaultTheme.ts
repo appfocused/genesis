@@ -15,6 +15,9 @@ export const defaultTheme: Theme = createMuiTheme({
     background: {
       default: '#424251',
       paper: '#33333e'
+    },
+    action: {
+      hoverOpacity: 0.1
     }
   },
 

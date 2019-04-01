@@ -1,93 +1,138 @@
-import { createStyles, makeStyles } from '@material-ui/styles';
-import { Props } from './Button';
-import { Theme } from '@material-ui/core';
-import { fade, lighten, darken } from '@material-ui/core/styles/colorManipulator';
-import {} from '@material-ui/core/styles';
-import { defaultTheme } from '../ThemeProvider';
+import { makeStyles, createStyles } from '@material-ui/styles';
 import { normalizedButton } from '../../normalize/button';
+import { Theme } from '@material-ui/core';
+import { Props } from './Button';
+import { any } from 'prop-types';
+import { lighten, darken, fade, getLuminance } from '@material-ui/core/styles';
+import { defaultTheme } from '../ThemeProvider/defaultTheme';
 import { Palette } from '@material-ui/core/styles/createPalette';
-// import * as button from '@appfocused/css-js-normalize/dist/es/button';
+import { Intent } from '../../interfaces';
 
-const colors = {
-  primary: (props: Props) => ({}),
+const defaultColor = '#333333';
 
-  secondary: (props: Props) => ({})
-};
+const getMainColor = (palette: Palette, props: Props) => {
+  if (props.disabled) {
+    return palette.action.disabledBackground;
+  }
 
-const getButtonIntent = (
-  palette: Palette,
-  mainColor: string,
-  hoverColor = darken(mainColor, palette.tonalOffset * 1.5)
-) => ({
-  backgroundColor: mainColor,
-  color: palette.getContrastText(mainColor),
-  border: `1px solid ${mainColor}`,
+  switch (props.intent) {
+    case Intent.Primary: {
+      return palette.primary.main;
+    }
 
-  '&:hover': {
-    border: `1px solid ${hoverColor}`,
-    backgroundColor: hoverColor,
-    color: palette.getContrastText(hoverColor),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent'
+    case Intent.Secondary: {
+      return palette.secondary.main;
+    }
+
+    default: {
+      return defaultColor;
     }
   }
-});
-
-const styles = (theme: Theme) => {
-  const { palette, spacing, typography, transitions, shape } = theme;
-
-  const defaultColor = '#333333';
-
-  return createStyles<any, Props>({
-    root: props => ({
-      ...normalizedButton,
-      ...typography.button,
-      boxSizing: 'border-box',
-      minWidth: spacing(8),
-      margin: spacing(1),
-      padding: spacing(1, 2),
-      borderRadius: shape.borderRadius,
-      color: palette.getContrastText(defaultColor),
-      transition: transitions.create(['background-color', 'box-shadow', 'border'], {
-        duration: transitions.duration.short
-      }),
-      '&:hover': {
-        textDecoration: 'none',
-        backgroundColor: lighten(theme.palette.text.primary),
-
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent'
-        },
-        '&$disabled': {
-          backgroundColor: 'transparent'
-        }
-      },
-      '&$disabled': {
-        color: theme.palette.action.disabled
-      }
-    }),
-
-    fullWidth: props => ({
-      width: '100%'
-    }),
-
-    small: {
-      padding: spacing(1, 2),
-      minWidth: 64,
-      fontSize: typography.pxToRem(13)
-    },
-
-    large: {
-      padding: spacing(1, 3),
-      fontSize: typography.pxToRem(15)
-    },
-
-    default: getButtonIntent(palette, defaultColor),
-    primary: getButtonIntent(palette, palette.primary.main, palette.primary.dark),
-    secondary: getButtonIntent(palette, palette.secondary.main, palette.secondary.dark)
-  });
 };
 
-export const useStyles = makeStyles(styles, { defaultTheme });
+const getBackgroundColor = (palette: Palette, props: Props) => {
+  if (props.disabled && props.variant === 'filled') {
+    return palette.action.disabledBackground;
+  }
+  const mainColor = getMainColor(palette, props);
+  return props.variant === 'filled' ? mainColor : 'transparent';
+};
+
+const getHoverColor = (palette: Palette, props: Props) => {
+  const mainColor = getMainColor(palette, props);
+
+  if (props.variant === 'filled') {
+    return darken(mainColor, palette.tonalOffset * 1.5);
+  }
+
+  return fade(mainColor, palette.action.hoverOpacity);
+};
+
+const getBorderColor = (palette: Palette, props: Props) => {
+  if (props.variant === 'text') {
+    return 'transparent';
+  }
+  return getMainColor(palette, props);
+};
+
+const getTextColor = (palette: Palette, props: Props) => {
+  const mainColor = getMainColor(palette, props);
+  if (props.variant === 'text' || props.variant === 'outlined') {
+    return props.intent === Intent.Default
+      ? palette.getContrastText(palette.background.default)
+      : mainColor;
+  }
+
+  return palette.getContrastText(mainColor);
+};
+
+const getButtonIntent = (palette: Palette) => (props: Props) => {
+  const hoverColor = getHoverColor(palette, props);
+  const color = getTextColor(palette, props);
+  const backgroundColor = getBackgroundColor(palette, props);
+  const borderColor = getBorderColor(palette, props);
+
+  console.log(props); // eslint-disable-line no-console
+  return {
+    backgroundColor,
+    color,
+    fontWeight: 400,
+    borderColor,
+
+    '&:hover:not([disabled])': {
+      borderColor: hoverColor,
+      backgroundColor: hoverColor,
+      color: props.variant === 'filled' ? palette.getContrastText(hoverColor) : color,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent'
+      }
+    },
+    '&[disabled]': {
+      color: palette.action.disabled,
+      backgroundColor,
+      borderColor
+    }
+  };
+};
+
+export const useStyles = makeStyles(
+  ({ typography, spacing, transitions, palette, shape }: Theme) =>
+    createStyles<any, Props>({
+      root: {
+        ...normalizedButton,
+        ...typography.button,
+        boxSizing: 'border-box',
+        minWidth: spacing(8),
+        margin: spacing(1),
+        padding: spacing(1, 2),
+        borderRadius: shape.borderRadius,
+        color: palette.getContrastText(defaultColor),
+        transition: transitions.create(['background-color', 'box-shadow', 'border'], {
+          duration: transitions.duration.short
+        }),
+        '&:hover': {
+          textDecoration: 'none',
+          backgroundColor: lighten(palette.text.primary),
+
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent'
+          },
+          '&$disabled': {
+            backgroundColor: 'transparent'
+          }
+        },
+        '&$disabled': {
+          color: palette.action.disabled
+        }
+      },
+
+      fullWidth: props => ({
+        width: '100%'
+      }),
+
+      intent: getButtonIntent(palette)
+    }),
+  { defaultTheme }
+);

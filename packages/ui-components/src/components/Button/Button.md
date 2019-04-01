@@ -22,6 +22,17 @@
 </div>
 ```
 
+## Text Buttons
+
+```
+<div>
+  <Button variant="text">Default</Button>
+  <Button intent="primary" variant="text">Primary</Button>
+  <Button intent="secondary" variant="text">Secondary</Button>
+  <Button disabled variant="text">Disabled</Button>
+</div>
+```
+
 ## Full Width
 
 ```
