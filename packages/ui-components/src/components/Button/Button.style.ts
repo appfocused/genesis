@@ -48,11 +48,18 @@ const getHoverColor = (palette: Palette, props: Props) => {
   return fade(mainColor, palette.action.hoverOpacity);
 };
 
-const getBorderColor = (palette: Palette, props: Props) => {
+const getBorderColor = (palette: Palette, props: Props, hasHover = false) => {
+  const mainColor = getMainColor(palette, props);
+
   if (props.variant === 'text') {
     return 'transparent';
   }
-  return getMainColor(palette, props);
+
+  if (props.variant === 'outlined' && !props.disabled) {
+    return hasHover ? mainColor : fade(mainColor, 0.5);
+  }
+
+  return hasHover ? getHoverColor(palette, props) : mainColor;
 };
 
 const getTextColor = (palette: Palette, props: Props) => {
@@ -80,7 +87,7 @@ const getButtonIntent = (palette: Palette) => (props: Props) => {
     borderColor,
 
     '&:hover:not([disabled])': {
-      borderColor: hoverColor,
+      borderColor: getBorderColor(palette, props, true),
       backgroundColor: hoverColor,
       color: props.variant === 'filled' ? palette.getContrastText(hoverColor) : color,
       // Reset on touch devices, it doesn't add specificity
