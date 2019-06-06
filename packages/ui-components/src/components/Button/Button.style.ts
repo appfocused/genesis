@@ -118,6 +118,7 @@ export const useStyles = makeStyles(
         transition: transitions.create(['background-color', 'box-shadow', 'border'], {
           duration: transitions.duration.short
         }),
+
         '&:hover': {
           textDecoration: 'none',
           backgroundColor: lighten(palette.text.primary),
@@ -126,10 +127,12 @@ export const useStyles = makeStyles(
           '@media (hover: none)': {
             backgroundColor: 'transparent'
           },
+
           '&$disabled': {
             backgroundColor: 'transparent'
           }
         },
+
         '&$disabled': {
           color: palette.action.disabled
         }

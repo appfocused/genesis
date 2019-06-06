@@ -1,5 +1,17 @@
 # Genesis
 
+## Yarn workspaces
+
+- yarn install on root
+- yarn bootstrap  
+  Bootstrap all dependencies. This will hoist shared packages to the root dir for a faster install.
+  It will also link your dependencies together via symlinks.
+
+NOTE - use yarn install on the root repository first to install the necessary devdependencies
+(lerna)
+
+yarn bootstrap
+
 ### ToDo
 
 [] Reusable tsconfig  

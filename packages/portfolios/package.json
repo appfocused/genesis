@@ -1,0 +1,35 @@
+{
+  "name": "@appfocused/portfolios",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@appfocused/ui-components": "^0.0.0",
+    "@appfocused/eslint-config": "^0.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "rxjs": "6.5.2"
+  },
+  "scripts": {
+    "build": "webpack --mode=production",
+    "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@appfocused/build-scripts": "0.0.0",
+    "@types/node": "11.9.4",
+    "@types/react": "16.8.17",
+    "@types/react-dom": "16.8.4",
+    "cache-loader": "^2.0.1",
+    "eslint": "5.16.1",
+    "jest": "^24.1.0",
+    "typescript": "3.3.3",
+    "webpack": "^4.29.3",
+    "webpack-cli": "3.3.2",
+    "webpack-dev-server": "3.3.1"
+  }
+}

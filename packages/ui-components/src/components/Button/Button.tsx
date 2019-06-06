@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
+import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import { useStyles } from './Button.style';
 import { InputControlHandlers, Intent } from '../../interfaces';
 
@@ -14,6 +15,8 @@ export type Props = {
   size?: 'small' | 'medium' | 'large';
   variant?: 'text' | 'outlined' | 'filled';
 } & InputControlHandlers;
+
+type P = ButtonBaseProps;
 
 const Button = (props: Props) => {
   const propsWithDefaults = {
@@ -48,12 +51,10 @@ const Button = (props: Props) => {
     classNameProp
   );
 
-  console.log({ classes, s: classes.fullWidth }); // eslint-disable-line no-console
-
   return (
-    <button className={className} type={type} disabled={disabled} {...restProps}>
+    <ButtonBase className={className} type={type} disabled={disabled} {...restProps} focusRipple>
       {props.children}
-    </button>
+    </ButtonBase>
   );
 };
 
