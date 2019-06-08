@@ -2,12 +2,11 @@ import * as React from 'react';
 import { UP, DOWN, ENTER } from '../../utils/key-utils';
 
 export interface UseAutocompleteArgs<Suggestion> {
-  onBlur?: (value?: string) => void;
+  onBlur?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onPointerDown?: (e: React.PointerEvent<any>) => void;
   onSelect?: (suggestion: Suggestion) => void;
   suggestions?: Suggestion[];
-  suggestionFilter?: (value?: string) => (suggestion: Suggestion) => boolean;
+  suggestionFilter?: (value: string) => (suggestion: Suggestion) => boolean;
   shouldRenderSuggestions?: (value: string) => boolean;
   value?: string;
 }
@@ -19,9 +18,9 @@ export function useAutocomplete<Suggestion>({
   onChange,
   onSelect,
   suggestions = [],
-  suggestionFilter = (_?: string) => (_: Suggestion) => true,
+  suggestionFilter = () => () => true,
   shouldRenderSuggestions = (v: string) => v.length >= 2,
-  value
+  value = ''
 }: UseAutocompleteArgs<Suggestion> = {}) {
   const [inputValue, setInputValue] = React.useState(value);
   const [highlightedIndex, setSuggestionIdx] = React.useState<number | undefined>(undefined);
@@ -44,6 +43,7 @@ export function useAutocomplete<Suggestion>({
       onChange(e);
     }
   };
+
   const matchingSuggestions = suggestions.filter(suggestionFilter(inputValue));
 
   const handleSelect = (idx: number) => {
@@ -93,10 +93,10 @@ export function useAutocomplete<Suggestion>({
   };
 
   const handleBlur = () => {
-    // setIsOpen(false);
+    setIsOpen(false);
 
     if (onBlur) {
-      onBlur(inputValue);
+      onBlur();
     }
   };
 
@@ -107,6 +107,12 @@ export function useAutocomplete<Suggestion>({
     onBlur: handleBlur
   };
 
+  const suggestionProps = (suggestionIdx: number) => ({
+    onClick: () => {
+      handleClick(suggestionIdx);
+    }
+  });
+
   const suggestionsData = {
     matchingSuggestions,
     highlightedIndex,
@@ -115,8 +121,7 @@ export function useAutocomplete<Suggestion>({
 
   return {
     inputProps,
-    suggestionsData,
-    matchingSuggestions,
-    onClick: handleClick
+    suggestionProps,
+    suggestionsData
   };
 }

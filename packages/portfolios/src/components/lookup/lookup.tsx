@@ -22,11 +22,19 @@ const suggestionToString = (suggestion: Asset) => suggestion.symbol;
 export const Lookup: React.FunctionComponent = props => {
   const [suggestions, setSuggestions] = React.useState([]);
   const [value, setValue] = React.useState('');
+  const [hasError, setHasError] = React.useState(false);
 
   React.useEffect(() => {
-    const subscription = getReactiveSuggestions(subject$).subscribe(v => {
-      setSuggestions(v);
-    });
+    const subscription = getReactiveSuggestions(subject$).subscribe(
+      v => {
+        setHasError(false);
+        setSuggestions(v);
+      },
+      error => {
+        setHasError(true);
+        console.warn(error);
+      }
+    );
 
     return () => subscription.unsubscribe();
   }, []);
@@ -36,8 +44,6 @@ export const Lookup: React.FunctionComponent = props => {
   };
 
   const onSelect = (suggestion: Asset) => setValue(suggestion.symbol);
-
-  console.log({ suggestions });
 
   return (
     <>
@@ -50,6 +56,7 @@ export const Lookup: React.FunctionComponent = props => {
         onSelect={onSelect}
         value={value}
       />
+      {hasError && <div>Error!</div>}
     </>
   );
 };

@@ -40,9 +40,8 @@ function Autocomplete<T>(props: Props<T>) {
 
   const {
     inputProps,
-    suggestionsData: { isOpen, highlightedIndex },
-    matchingSuggestions,
-    onClick
+    suggestionProps,
+    suggestionsData: { isOpen, highlightedIndex, matchingSuggestions }
   } = useAutocomplete<T>({
     suggestions,
     suggestionFilter,
@@ -60,7 +59,7 @@ function Autocomplete<T>(props: Props<T>) {
           {matchingSuggestions.map((suggestion, idx) => {
             const isHighlighted = highlightedIndex === idx;
             return (
-              <div key={`suggestion-${idx}`} onClick={() => onClick(idx)}>
+              <div key={`suggestion-${idx}`} {...suggestionProps(idx)}>
                 {suggestionRenderer
                   ? suggestionRenderer(suggestion, isHighlighted, value)
                   : undefined}
