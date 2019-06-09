@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useStyles } from './Page.style';
 import { Lookup } from '../lookup/lookup';
+import Heading from '@appfocused/ui-components/dist/es/components/Heading';
 
 export const Page: React.FunctionComponent = props => {
   const classes = useStyles();
@@ -8,7 +9,9 @@ export const Page: React.FunctionComponent = props => {
   return (
     <div className={classes.root}>
       <header>
-        <h1 className={classes.header}>Portfolios</h1>
+        <Heading className={classes.header} level={1}>
+          Portfolios
+        </Heading>
         <Lookup />
       </header>
     </div>

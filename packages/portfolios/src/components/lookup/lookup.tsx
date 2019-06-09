@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BehaviorSubject } from 'rxjs';
 import Autocomplete from '@appfocused/ui-components/dist/es/components/Autocomplete';
+import Heading from '@appfocused/ui-components/dist/es/components/Heading';
+
 import { getReactiveSuggestions } from './service';
 import { Asset } from '../@types/interfaces';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -47,7 +49,7 @@ export const Lookup: React.FunctionComponent = props => {
 
   return (
     <>
-      <h2>Lookup </h2>
+      <Heading>Lookup</Heading>
       <Autocomplete
         suggestions={suggestions}
         onChange={handleChange}
