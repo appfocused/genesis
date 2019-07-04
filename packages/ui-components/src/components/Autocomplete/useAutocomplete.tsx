@@ -48,8 +48,9 @@ export function useAutocomplete<Suggestion>({
 
   const handleSelect = (idx: number) => {
     const selectedSuggestion = matchingSuggestions[idx];
-    if (selectedSuggestion && isOpen) {
+    if (selectedSuggestion) {
       setIsOpen(false);
+      setInputValue('');
 
       if (onSelect) {
         onSelect(selectedSuggestion);
@@ -93,7 +94,10 @@ export function useAutocomplete<Suggestion>({
   };
 
   const handleBlur = () => {
-    setIsOpen(false);
+    // delayed close of the dropdown as mouse onClick event needs to happen first
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 500);
 
     if (onBlur) {
       onBlur();

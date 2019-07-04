@@ -11,4 +11,5 @@
 
 ## Molecules
 
-[x] Autocomplete
+[x] Autocomplete  
+[] Mouse handling on autocomplete
