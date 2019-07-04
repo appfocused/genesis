@@ -11,7 +11,7 @@ const subject$ = new BehaviorSubject('');
 
 const suggestionRenderer = (suggestion: Asset, isHighlighted: boolean, _?: string) => (
   <MenuItem key={suggestion.symbol} selected={isHighlighted} component="div">
-    {suggestion.symbol} {suggestion.name}
+    {suggestion.symbol} {suggestion.name} {suggestion.region}
   </MenuItem>
 );
 
@@ -19,11 +19,14 @@ const suggestionFilter = () => (suggestion: Asset) => {
   return Number(suggestion.matchScore) >= 0.75;
 };
 
-const suggestionToString = (suggestion: Asset) => suggestion.symbol;
+interface Props {
+  onSelect?: (suggestion: Asset) => void;
+  value?: string;
+}
 
-export const Lookup: React.FunctionComponent = props => {
+export const Lookup: React.FunctionComponent<Props> = ({ onSelect, value: valueProp = '' }) => {
   const [suggestions, setSuggestions] = React.useState([]);
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(valueProp);
   const [hasError, setHasError] = React.useState(false);
 
   React.useEffect(() => {
@@ -45,7 +48,11 @@ export const Lookup: React.FunctionComponent = props => {
     subject$.next(e.target.value);
   };
 
-  const onSelect = (suggestion: Asset) => setValue(suggestion.symbol);
+  const handleSelect = (suggestion: Asset) => {
+    if (onSelect) {
+      onSelect(suggestion);
+    }
+  };
 
   return (
     <>
@@ -55,7 +62,7 @@ export const Lookup: React.FunctionComponent = props => {
         onChange={handleChange}
         suggestionRenderer={suggestionRenderer}
         suggestionFilter={suggestionFilter}
-        onSelect={onSelect}
+        onSelect={handleSelect}
         value={value}
       />
       {hasError && <div>Error!</div>}
