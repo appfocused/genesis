@@ -7,9 +7,10 @@
 
 [x] Input  
 [x] Button  
-[ ] Heading
+[x] Heading  
+[ ] Modal
 
 ## Molecules
 
 [x] Autocomplete  
-[] Mouse handling on autocomplete
+[x] Mouse handling on autocomplete

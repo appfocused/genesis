@@ -1,6 +1,7 @@
 export * from './components/Button';
 export * from './components/Input';
 export * from './components/Autocomplete';
+export * from './components/Modal';
 export * from './components/ThemeProvider';
 export * from './interfaces';
 
