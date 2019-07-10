@@ -16,11 +16,12 @@
     "deploy": "sls deploy"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "aws-sdk": "^2.489.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "aws-sdk": "^2.489.0",
-    "serverless-http": "^2.0.2"
+    "express": "^4.17.1",
+    "serverless-http": "^2.0.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@types/aws-sdk": "^2.7.0",
@@ -30,6 +31,7 @@
     "@types/node": "^12.6.1",
     "serverless": "^1.46.1",
     "serverless-domain-manager": "^3.2.6",
+    "serverless-dynamodb-local": "^0.2.38",
     "serverless-offline": "^5.7.2",
     "serverless-plugin-typescript": "^1.1.7",
     "typescript": "^3.5.3"

@@ -2,13 +2,35 @@ service: portfolio-services
 
 plugins:
   - serverless-plugin-typescript
+  - serverless-dynamodb-local
   - serverless-offline
+
+custom:
+  tableName: 'portfolios-${self:provider.stage}'
+  dynamodb:
+    start:
+      migrate: true
+    stages:
+      - dev
 
 provider:
   name: aws
   runtime: nodejs10.x
   stage: dev
   region: eu-west-1
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+    Resource:
+      - { "Fn::GetAtt": ["PortfoliosDynamoDbTable", "Arn" ] }
+  environment:
+    PORTFOLIOS_TABLE: ${self:custom.tableName}
 
 functions:
   app:
@@ -16,3 +38,28 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+  
+  createPortfolio:
+    handler: index.handler
+    events:
+      - http:
+          path: 'portfolios'
+          method: 'post'
+          cors: true
+
+resources:
+  Resources:
+    PortfoliosDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName}
