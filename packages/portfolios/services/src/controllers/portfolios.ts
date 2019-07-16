@@ -5,8 +5,6 @@ import * as uuid from 'uuid';
 export const createPortfolio = (req: Request, res: Response) => {
   const { name, ccy } = req.body;
 
-  console.log(uuid);
-
   const userId = 'vitkon';
   const timestamp = new Date().toISOString();
   const id = uuid.v4();

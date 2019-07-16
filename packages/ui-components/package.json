@@ -6,8 +6,8 @@
   "types": "dist/es",
   "license": "MIT",
   "dependencies": {
-    "@material-ui/styles": "next",
-    "@material-ui/core": "next",
+    "@material-ui/styles": "4.2.0",
+    "@material-ui/core": "4.2.0",
     "jss": "10.0.0-alpha.16"
   },
   "peerDependencies": {
@@ -38,11 +38,11 @@
     "clsx": "1.0.3",
     "react-styleguidist": "9.0.4",
     "react-docgen-typescript": "^1.12.3",
-    "@types/react": "16.8.17",
+    "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4"
   },
   "resolutions": {
-    "@types/react": "16.8.17"
+    "@types/react": "16.8.23"
   },
   "scripts": {
     "clean": "rimraf dist",

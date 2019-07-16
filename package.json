@@ -13,6 +13,6 @@
     "yarn": "1.13.0"
   },
   "workspaces": [
-    "packages/*"
+    "packages/**/*"
   ]
 }
