@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const devServer = require('./dev-server');
 const fs = require('fs');
 const buildPaths = require('./build-paths');
-
 const indexPath = buildPaths.path.join(buildPaths.src, 'index.html');
 const hasTemplate = fs.existsSync(indexPath);
 
