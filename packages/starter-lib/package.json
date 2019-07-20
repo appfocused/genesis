@@ -1,21 +1,21 @@
 {
   "name": "@appfocused/starter-lib",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@appfocused/common": "^0.0.0"
+    "@appfocused/common": "^0.0.1"
   },
   "scripts": {
     "build": "webpack",
     "type-declarations": "tsc --emitDeclarationOnly"
   },
   "devDependencies": {
-    "@appfocused/build-scripts": "0.0.0",
+    "@appfocused/build-scripts": "^0.0.1",
     "cache-loader": "^2.0.1",
+    "typescript": "3.3.3",
     "webpack": "^4.29.3",
-    "webpack-cli": "3.3.2",
-    "typescript": "3.3.3"
+    "webpack-cli": "3.3.2"
   },
   "private": true
 }

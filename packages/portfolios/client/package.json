@@ -1,14 +1,14 @@
 {
   "name": "@appfocused/portfolios",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@appfocused/eslint-config": "^0.0.1",
     "@appfocused/ui-components": "^0.0.0",
-    "@appfocused/eslint-config": "^0.0.0",
+    "@material-ui/icons": "^4.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "rxjs": "6.5.2",
-    "@material-ui/icons": "^4.2.1"
+    "rxjs": "6.5.2"
   },
   "scripts": {
     "build": "webpack --mode=production",
@@ -21,7 +21,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@appfocused/build-scripts": "0.0.0",
+    "@appfocused/build-scripts": "^0.0.1",
     "@types/node": "11.9.4",
     "@types/react": "16.8.17",
     "@types/react-dom": "16.8.4",

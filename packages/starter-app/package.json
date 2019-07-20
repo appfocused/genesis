@@ -1,11 +1,11 @@
 {
   "name": "@appfocused/starter-app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@appfocused/common": "^0.0.0",
+    "@appfocused/common": "^0.0.1",
+    "@appfocused/eslint-config": "^0.0.1",
     "@appfocused/ui-components": "^0.0.0",
-    "@appfocused/eslint-config": "^0.0.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2"
   },
@@ -20,7 +20,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@appfocused/build-scripts": "0.0.0",
+    "@appfocused/build-scripts": "^0.0.1",
     "@types/node": "11.9.4",
     "@types/react": "16.8.3",
     "@types/react-dom": "16.8.1",
@@ -31,6 +31,5 @@
     "webpack": "^4.29.3",
     "webpack-cli": "3.3.2",
     "webpack-dev-server": "3.3.1"
-  },
-  "private": true
+  }
 }
