@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "lerna run build"
+    "postinstall": "lerna run build",
+    "release": "lerna publish --ignore=portfolios"
   },
   "devDependencies": {
     "lerna": "^3.11.1",

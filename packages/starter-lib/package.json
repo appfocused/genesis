@@ -16,5 +16,6 @@
     "webpack": "^4.29.3",
     "webpack-cli": "3.3.2",
     "typescript": "3.3.3"
-  }
+  },
+  "private": true
 }
