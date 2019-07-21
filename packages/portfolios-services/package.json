@@ -8,7 +8,7 @@
   "scripts": {
     "start": "sls offline start",
     "clean": "rimraf .build",
-    "package": "npm run clean && sls package",
+    "build": "sls dynamodb install",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
@@ -36,6 +36,7 @@
     "serverless-offline": "^5.7.2",
     "serverless-plugin-monorepo": "^0.7.0",
     "serverless-plugin-typescript": "^1.1.7",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "rimraf": "2.6.3"
   }
 }
