@@ -6,14 +6,21 @@
   "private": true,
   "scripts": {
     "postinstall": "lerna run build",
-    "release": "lerna publish --ignore=portfolios"
+    "release": "lerna publish --ignore=portfolios",
+    "app:portfolios": "concurrently \"cd packages/portfolios-client && npm start\" \"cd packages/portfolios-services && npm start\"",
+    "clean-deps": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + &&  rm -f yarn.lock && rm -fr */**/yarn.lock"
   },
   "devDependencies": {
     "lerna": "^3.11.1",
     "prettier": "^1.16.4",
     "yarn": "1.13.0"
   },
-  "workspaces": [
-    "packages/**/*"
-  ]
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/*-services/**"
+    ]
+  }
 }

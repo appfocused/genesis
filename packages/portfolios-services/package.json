@@ -7,13 +7,14 @@
   "license": "ISC",
   "scripts": {
     "start": "sls offline start",
-    "build": "npm run build-ts",
+    "clean": "rimraf .build",
+    "package": "npm run clean && sls package",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "serve-debug": "nodemon --inspect dist/server.js",
     "test": "jest",
-    "deploy": "sls deploy"
+    "deploy": "npm run clean && sls deploy"
   },
   "dependencies": {
     "aws-sdk": "^2.489.0",
@@ -29,10 +30,11 @@
     "@types/cors": "^2.8.5",
     "@types/express": "^4.17.0",
     "@types/node": "^12.6.1",
-    "serverless": "^1.46.1",
+    "serverless": "^1.48.2",
     "serverless-domain-manager": "^3.2.6",
     "serverless-dynamodb-local": "^0.2.38",
     "serverless-offline": "^5.7.2",
+    "serverless-plugin-monorepo": "^0.7.0",
     "serverless-plugin-typescript": "^1.1.7",
     "typescript": "^3.5.3"
   }
