@@ -9,7 +9,8 @@ package-lock.json
 yarn-error.log
 
 .serverless
-.build/*
+.build
+.dynamodb
 
 .cache-loader
 dist
