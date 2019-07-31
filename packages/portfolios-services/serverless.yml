@@ -1,17 +1,29 @@
 service: portfolio-services
 
 plugins:
+  - serverless-domain-manager
   - serverless-plugin-typescript
   - serverless-dynamodb-local
   - serverless-offline
 
 custom:
-  tableName: 'portfolios-${self:provider.stage}'
+  stage: ${opt:stage, self:provider.stage}
+  domains:
+    production: api.appfocused.com
+    dev: api-dev.appfocused.com
+  tableName: 'portfolios-${self:custom.stage}'
   dynamodb:
     start:
       migrate: true
     stages:
       - dev
+      - production
+  customDomain:
+    domainName: ${self:custom.domains.${self:custom.stage}}
+    certificateName: "www.appfocused.com"
+    basePath: "portfolios"
+    stage: ${self:custom.stage}
+    createRoute53Record: true
 
 provider:
   name: aws
@@ -31,20 +43,22 @@ provider:
       - { "Fn::GetAtt": ["PortfoliosDynamoDbTable", "Arn" ] }
   environment:
     PORTFOLIOS_TABLE: ${self:custom.tableName}
+    SERVICE_NAME: ${self:service}
 
 functions:
-  app:
-    handler: index.handler
-    events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
-  
   createPortfolio:
     handler: index.handler
     events:
       - http:
-          path: 'portfolios'
-          method: 'post'
+          path: portfolios/version
+          method: get
+          cors: true
+  version:
+    handler: index.handler
+    events:
+      - http:
+          path: portfolios/
+          method: post
           cors: true
 
 resources:

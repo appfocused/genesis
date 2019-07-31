@@ -2,6 +2,9 @@
   "name": "@appfocused/portfolios",
   "version": "0.0.1",
   "private": true,
+  "config": {
+    "bucket_name": "finance.appfocused.com"
+  },
   "dependencies": {
     "@appfocused/eslint-config": "^0.0.1",
     "@appfocused/ui-components": "^0.0.0",
@@ -13,6 +16,7 @@
   },
   "scripts": {
     "build": "webpack --mode=production",
+    "deploy:prod": "aws s3 sync dist/ s3://$npm_package_config_bucket_name/apps/$npm_package_name@$npm_package_version",
     "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development"
   },
   "browserslist": [
