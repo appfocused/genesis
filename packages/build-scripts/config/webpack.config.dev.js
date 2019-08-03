@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 const devServer = require('./dev-server');
 const fs = require('fs');
 const buildPaths = require('./build-paths');
@@ -39,7 +40,8 @@ module.exports = options => ({
         template: indexPath
       }),
     new webpack.HotModuleReplacementPlugin(),
-    require('./plugins/typescript-checker')()
+    require('./plugins/typescript-checker')(),
+    new WebpackAssetsManifest()
   ].filter(Boolean),
 
   devServer

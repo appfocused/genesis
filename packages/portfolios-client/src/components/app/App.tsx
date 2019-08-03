@@ -2,7 +2,11 @@ import * as React from 'react';
 import { ThemeProvider, defaultTheme } from '@appfocused/ui-components/dist/es';
 import { Page } from '../Page/Page';
 
-export const App: React.FunctionComponent = props => {
+interface Props {
+  history: History;
+}
+
+export const App: React.FunctionComponent<Props> = props => {
   console.log({ defaultTheme });
   return (
     <ThemeProvider theme={defaultTheme}>

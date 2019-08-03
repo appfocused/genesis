@@ -3,4 +3,16 @@ import * as ReactDOM from 'react-dom';
 import './index.css';
 import { App } from './components/App';
 
-ReactDOM.render(React.createElement(App, {}, null), document.getElementById('root'));
+const renderFnName = `renderPortfolios`;
+
+(window as any)[renderFnName] = (containerId: string, history: History) => {
+  ReactDOM.render(<App history={history} />, document.getElementById(containerId));
+};
+
+(window as any).unmountPortfolios = (containerId: string) => {
+  const el = document.getElementById(containerId);
+
+  if (el) {
+    ReactDOM.unmountComponentAtNode(el);
+  }
+};

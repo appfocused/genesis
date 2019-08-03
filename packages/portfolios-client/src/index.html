@@ -5,6 +5,11 @@
     <title>react-webpack-typescript-babel</title>
   </head>
   <body>
-    <div id="root"></div>
+    <main id="container"></main>
+    <script type="text/javascript">
+      window.onload = () => {
+        window.renderPortfolios('container');
+      };
+    </script>
   </body>
 </html>

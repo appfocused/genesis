@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const fs = require('fs');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 const buildPaths = require('./build-paths');
 
 const indexPath = buildPaths.path.join(buildPaths.src, 'index.html');
@@ -37,6 +38,7 @@ module.exports = options => ({
         inject: true,
         template: indexPath
       }),
+    new WebpackAssetsManifest(),
     require('./plugins/typescript-checker')()
   ].filter(Boolean)
 });

@@ -1,5 +1,5 @@
 {
-  "name": "@appfocused/portfolios",
+  "name": "@appfocused/finance-app-shell",
   "version": "0.0.1",
   "private": true,
   "config": {
@@ -8,17 +8,15 @@
   },
   "dependencies": {
     "@appfocused/eslint-config": "^0.0.1",
-    "@appfocused/ui-components": "^0.0.0",
-    "@material-ui/icons": "^4.2.1",
     "concurrently": "^4.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "rxjs": "6.5.2"
+    "react-router-dom": "^5.0.1"
   },
   "scripts": {
     "build": "webpack --mode=production",
-    "s3:sync": "aws s3 sync dist/ s3://$npm_package_config_bucket_name/apps/$npm_package_name@$npm_package_version",
-    "cloudfront:invalidate": "aws cloudfront create-invalidation --distribution-id=$npm_package_config_cloudfront_distribution --paths /apps/$npm_package_name@$npm_package_version/*",
+    "s3:sync": "aws s3 sync dist/ s3://$npm_package_config_bucket_name",
+    "cloudfront:invalidate": "aws cloudfront create-invalidation --distribution-id=$npm_package_config_cloudfront_distribution --paths /static/* /index.html",
     "deploy:prod": "npm run build && npm run s3:sync && npm run cloudfront:invalidate",
     "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development"
   },
@@ -33,6 +31,8 @@
     "@types/node": "11.9.4",
     "@types/react": "16.8.17",
     "@types/react-dom": "16.8.4",
+    "@types/react-router": "^5.0.3",
+    "@types/react-router-dom": "^4.3.4",
     "cache-loader": "^2.0.1",
     "eslint": "5.16.1",
     "jest": "^24.1.0",

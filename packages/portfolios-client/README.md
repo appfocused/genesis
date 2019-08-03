@@ -1,5 +1,5 @@
 ## TODO:
 
-[] Create portfolio UI  
-[] Create portfolio service  
-[] Generic modal component
+[x] Create portfolio UI  
+[x] Create portfolio service  
+[x] Generic modal component

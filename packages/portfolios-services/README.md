@@ -33,7 +33,7 @@ sls create_domain --stage dev
 ```
 curl -X POST -H "Content-Type:application/json" http://localhost:3000/api/portfolios --data '{ "name": "Watchlist" }'
 
-curl -X POST -H "Content-Type:application/json" https://finance.appfocused.com/api-finance/portfolios --data '{ "name": "Watchlist" }'
+curl -X POST -H "Content-Type:application/json" https://api.appfocused.com/portfolios --data '{ "name": "Watchlist" }'
 ```
 
 Example Result:
