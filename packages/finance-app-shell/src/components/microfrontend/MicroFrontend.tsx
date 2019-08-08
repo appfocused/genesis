@@ -54,6 +54,6 @@ export class MicroFrontend extends React.Component<Props> {
   }
 
   render() {
-    return <main id={`${this.props.name}-container`} />;
+    return <div id={`${this.props.name}-container`} />;
   }
 }

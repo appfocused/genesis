@@ -6,7 +6,8 @@ import { ThemeProvider, defaultTheme } from '@appfocused/ui-components/dist/es';
 import { Home } from '../home';
 import { MicroFrontend } from '../microfrontend';
 
-const portfoliosHost = '/apps/@appfocused/portfolios@0.0.1';
+const baseUrl = '';
+const portfoliosHost = `${baseUrl}/apps/@appfocused/portfolios@0.0.1`;
 
 const Portfolios = ({ history }: { history: History }) => (
   <MicroFrontend history={history} host={portfoliosHost} name="Portfolios" />
