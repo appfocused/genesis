@@ -1,9 +1,8 @@
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { createStyles } from '@material-ui/styles';
 import { normalizedButton } from '../../normalize/button';
 import { Theme } from '@material-ui/core';
 import { Props } from './Button';
-import { any } from 'prop-types';
-import { lighten, darken, fade, getLuminance } from '@material-ui/core/styles';
+import { lighten, darken, fade, makeStyles } from '@material-ui/core/styles';
 import { defaultTheme } from '../ThemeProvider/defaultTheme';
 import { Palette } from '@material-ui/core/styles/createPalette';
 import { Intent } from '../../interfaces';

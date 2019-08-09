@@ -1,7 +1,7 @@
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { createStyles } from '@material-ui/styles';
 import { Theme } from '@material-ui/core';
 import { defaultTheme } from '../ThemeProvider/defaultTheme';
-import { lighten } from '@material-ui/core/styles';
+import { lighten, makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(
   ({ typography, spacing, transitions, palette, shape, shadows }: Theme) => {
