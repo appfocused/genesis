@@ -1,6 +1,6 @@
 {
   "name": "@appfocused/ui-components",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "author": "Appfocused Team",
   "keywords": [
     "react",
@@ -29,7 +29,7 @@
     "emit-types:cjs": "tsc --declaration --emitDeclarationOnly --listEmittedFiles --jsx react --outDir dist",
     "dev": "concurrently --raw --kill-others 'yarn build:es --watch' 'yarn emit-types:es --watch'",
     "styleguidist": "styleguidist server",
-    "release": "yarn build && npm publish build --tag latest"
+    "release": "yarn build && npm publish --tag latest"
   },
   "dependencies": {
     "@material-ui/core": "4.2.0",
