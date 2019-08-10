@@ -3,26 +3,26 @@ import clsx from 'clsx';
 
 import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import { useStyles } from './Button.style';
-import { InputControlHandlers, Intent } from '../../interfaces';
+import { InputControlHandlers } from '../../interfaces';
 
-export type Props = {
+export type ButtonProps = {
   children: React.ReactNode;
   className?: string;
   type?: 'submit' | 'button' | 'reset';
   fullWidth?: boolean;
   disabled?: boolean;
-  intent?: Intent;
+  intent?: 'primary' | 'secondary' | 'default';
   size?: 'small' | 'medium' | 'large';
   variant?: 'text' | 'outlined' | 'filled';
 } & InputControlHandlers;
 
 type P = ButtonBaseProps;
 
-const Button = (props: Props) => {
-  const propsWithDefaults = {
+const Button = (props: ButtonProps) => {
+  const propsWithDefaults: ButtonProps = {
     ...props,
     className: props.className || '',
-    intent: props.intent || Intent.Default,
+    intent: props.intent || 'default',
     variant: props.variant || 'filled'
   };
 

@@ -4,9 +4,3 @@ export interface InputControlHandlers {
   onChange?: <T extends {}>(e: React.ChangeEvent<T>) => void;
   onClick?: () => void;
 }
-
-export enum Intent {
-  Default = 'default',
-  Primary = 'primary',
-  Secondary = 'secondary'
-}

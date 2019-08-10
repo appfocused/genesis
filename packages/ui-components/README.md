@@ -1,16 +1,18 @@
 # UI Components
 
-- styles use theme and inject default theme
+## Installation
+
+```
+npm i @appfocused/ui-components --save
+```
+
+## Components Preview
+
+```
+npm run styleguidist
+```
+
+## Context
+
+- Components styles use theme and inject default theme
 - base components are taken from material
-
-## Atoms
-
-[x] Input  
-[x] Button  
-[x] Heading  
-[ ] Modal
-
-## Molecules
-
-[x] Autocomplete  
-[x] Mouse handling on autocomplete

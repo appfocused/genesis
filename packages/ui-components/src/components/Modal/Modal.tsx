@@ -13,13 +13,13 @@ function getModalStyle() {
   };
 }
 
-interface Props {
+export interface ModalProps {
   isOpen: boolean;
   children: React.ReactElement;
   onClose?: (event: any, reason: 'backdropClick' | 'escapeKeyDown') => void;
 }
 
-const Modal: React.FunctionComponent<Props> = props => {
+const Modal: React.FunctionComponent<ModalProps> = props => {
   const classes = useStyles(props);
   const { isOpen, onClose } = props;
 

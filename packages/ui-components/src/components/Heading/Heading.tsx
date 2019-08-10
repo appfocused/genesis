@@ -10,12 +10,23 @@ export interface Props {
 }
 
 const Heading: React.FunctionComponent<Props> = props => {
-  const { level = 2, className = '', children } = props;
+  const { level = 2, className: classNameProp = '', children } = props;
   const tag = level < 6 ? `h${level}` : 'h2';
 
-  const styles = useStyles(props);
+  const classes = useStyles(props);
+
+  const className = clsx(
+    classes.root,
+    {
+      [classes.h1]: level === 1,
+      [classes.h2]: level === 2,
+      [classes.h3]: level === 3
+    },
+    classNameProp
+  );
+
   const headingProps = {
-    className: clsx(styles.root, className)
+    className
   };
 
   return React.createElement(tag, headingProps, children);

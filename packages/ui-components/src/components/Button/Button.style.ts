@@ -1,25 +1,24 @@
 import { createStyles } from '@material-ui/styles';
 import { normalizedButton } from '../../normalize/button';
 import { Theme } from '@material-ui/core';
-import { Props } from './Button';
+import { ButtonProps } from './Button';
 import { lighten, darken, fade, makeStyles } from '@material-ui/core/styles';
 import { defaultTheme } from '../ThemeProvider/defaultTheme';
 import { Palette } from '@material-ui/core/styles/createPalette';
-import { Intent } from '../../interfaces';
 
 const defaultColor = '#333333';
 
-const getMainColor = (palette: Palette, props: Props) => {
+const getMainColor = (palette: Palette, props: ButtonProps) => {
   if (props.disabled) {
     return palette.action.disabledBackground;
   }
 
   switch (props.intent) {
-    case Intent.Primary: {
+    case 'primary': {
       return palette.primary.main;
     }
 
-    case Intent.Secondary: {
+    case 'secondary': {
       return palette.secondary.main;
     }
 
@@ -29,7 +28,7 @@ const getMainColor = (palette: Palette, props: Props) => {
   }
 };
 
-const getBackgroundColor = (palette: Palette, props: Props) => {
+const getBackgroundColor = (palette: Palette, props: ButtonProps) => {
   if (props.disabled && props.variant === 'filled') {
     return palette.action.disabledBackground;
   }
@@ -37,7 +36,7 @@ const getBackgroundColor = (palette: Palette, props: Props) => {
   return props.variant === 'filled' ? mainColor : 'transparent';
 };
 
-const getHoverColor = (palette: Palette, props: Props) => {
+const getHoverColor = (palette: Palette, props: ButtonProps) => {
   const mainColor = getMainColor(palette, props);
 
   if (props.variant === 'filled') {
@@ -47,7 +46,7 @@ const getHoverColor = (palette: Palette, props: Props) => {
   return fade(mainColor, palette.action.hoverOpacity);
 };
 
-const getBorderColor = (palette: Palette, props: Props, hasHover = false) => {
+const getBorderColor = (palette: Palette, props: ButtonProps, hasHover = false) => {
   const mainColor = getMainColor(palette, props);
 
   if (props.variant === 'text') {
@@ -61,10 +60,10 @@ const getBorderColor = (palette: Palette, props: Props, hasHover = false) => {
   return hasHover ? getHoverColor(palette, props) : mainColor;
 };
 
-const getTextColor = (palette: Palette, props: Props) => {
+const getTextColor = (palette: Palette, props: ButtonProps) => {
   const mainColor = getMainColor(palette, props);
   if (props.variant === 'text' || props.variant === 'outlined') {
-    return props.intent === Intent.Default
+    return props.intent === 'default'
       ? palette.getContrastText(palette.background.default)
       : mainColor;
   }
@@ -72,7 +71,7 @@ const getTextColor = (palette: Palette, props: Props) => {
   return palette.getContrastText(mainColor);
 };
 
-const getButtonIntent = (palette: Palette) => (props: Props) => {
+const getButtonIntent = (palette: Palette) => (props: ButtonProps) => {
   const hoverColor = getHoverColor(palette, props);
   const color = getTextColor(palette, props);
   const backgroundColor = getBackgroundColor(palette, props);
@@ -104,7 +103,7 @@ const getButtonIntent = (palette: Palette) => (props: Props) => {
 
 export const useStyles = makeStyles(
   ({ typography, spacing, transitions, palette, shape }: Theme) =>
-    createStyles<any, Props>({
+    createStyles<any, ButtonProps>({
       root: {
         ...normalizedButton,
         ...typography.button,
