@@ -9,10 +9,10 @@
   "dependencies": {
     "@appfocused/eslint-config": "^0.0.1",
     "@appfocused/ui-components": "^0.0.0",
-    "@material-ui/icons": "^4.2.1",
+    "@material-ui/icons": "4.2.0",
     "concurrently": "^4.1.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
     "rxjs": "6.5.2"
   },
   "scripts": {
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@appfocused/build-scripts": "^0.0.1",
     "@types/node": "11.9.4",
-    "@types/react": "16.8.17",
+    "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
     "cache-loader": "^2.0.1",
     "eslint": "5.16.1",

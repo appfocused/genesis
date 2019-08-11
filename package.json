@@ -15,6 +15,9 @@
     "prettier": "^1.16.4",
     "yarn": "1.13.0"
   },
+  "resolutions": {
+    "@types/react": "16.8.23"
+  },
   "workspaces": {
     "packages": [
       "packages/*"
