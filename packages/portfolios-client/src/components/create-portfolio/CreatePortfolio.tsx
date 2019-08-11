@@ -3,7 +3,6 @@ import Heading from '@appfocused/ui-components/dist/es/components/Heading';
 import Button from '@appfocused/ui-components/dist/es/components/Button';
 import Modal from '@appfocused/ui-components/dist/es/components/Modal';
 import Input from '@appfocused/ui-components/dist/es/components/Input';
-import { Intent } from '@appfocused/ui-components/dist/es';
 
 import AddIcon from '@material-ui/icons/AddOutlined';
 import { endpoints } from '../../utils/api-utils';
@@ -38,7 +37,7 @@ export const CreatePortfolio: React.FunctionComponent = () => {
 
   return (
     <>
-      <Button intent={Intent.Primary} onClick={handleModalOpen}>
+      <Button intent="secondary" onClick={handleModalOpen}>
         <AddIcon /> Add Portfolio
       </Button>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
@@ -46,7 +45,7 @@ export const CreatePortfolio: React.FunctionComponent = () => {
           <Heading>Create Portfolio</Heading>
           <p>lorem ipsum</p>
           <Input />
-          <Button intent={Intent.Primary} onClick={handleCreatePortfolio}>
+          <Button intent="primary" onClick={handleCreatePortfolio}>
             Create
           </Button>
         </>
