@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@appfocused/eslint-config": "^0.0.1",
-    "@appfocused/ui-components": "^0.0.0",
+    "@appfocused/ui-components": "0.0.5",
     "@material-ui/icons": "4.2.0",
     "concurrently": "^4.1.1",
     "react": "16.8.6",
@@ -34,7 +34,7 @@
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
     "cache-loader": "^2.0.1",
-    "eslint": "5.16.1",
+    "eslint": "5.16.0",
     "jest": "^24.1.0",
     "typescript": "3.3.3",
     "webpack": "^4.29.3",
