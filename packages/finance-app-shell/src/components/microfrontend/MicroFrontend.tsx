@@ -4,6 +4,7 @@ interface Props {
   name: string;
   host: string;
   history?: History;
+  theme?: any;
   w?: Window;
   d?: Document;
 }
@@ -34,6 +35,12 @@ export class MicroFrontend extends React.Component<Props> {
       });
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (JSON.stringify(prevProps.theme) !== JSON.stringify(this.props.theme)) {
+      this.renderMicroFrontend();
+    }
+  }
+
   componentWillUnmount() {
     const { name, w = window } = this.props;
     const unmountFn = (w as any)[`unmount${name}`];
@@ -44,12 +51,12 @@ export class MicroFrontend extends React.Component<Props> {
   }
 
   renderMicroFrontend() {
-    const { name, w = window, history } = this.props;
+    const { name, w = window, history, theme } = this.props;
 
     const renderFn = (w as any)[`render${name}`];
 
     if (renderFn) {
-      renderFn(`${name}-container`, history);
+      renderFn(`${name}-container`, history, theme);
     }
   }
 

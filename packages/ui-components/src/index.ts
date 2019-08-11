@@ -15,5 +15,5 @@ export * from './components/Modal';
 export * from './components/ThemeProvider';
 export * from './interfaces';
 
-export { useTheme } from '@material-ui/styles';
+export { useTheme, createStyles } from '@material-ui/styles';
 export { createMuiTheme as createTheme, makeStyles } from '@material-ui/core';

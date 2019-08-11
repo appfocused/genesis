@@ -4,12 +4,13 @@ import { Page } from '../Page/Page';
 
 interface Props {
   history: History;
+  theme?: any;
 }
 
 export const App: React.FunctionComponent<Props> = props => {
-  console.log({ defaultTheme });
+  const { theme = defaultTheme } = props;
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Page />
     </ThemeProvider>
   );
