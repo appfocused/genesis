@@ -1,7 +1,14 @@
 {
+  "private": true,
   "name": "@appfocused/portfolios",
   "version": "0.0.1",
-  "private": true,
+  "scripts": {
+    "build": "webpack --mode=production",
+    "cloudfront:invalidate": "aws cloudfront create-invalidation --distribution-id=$npm_package_config_cloudfront_distribution --paths /apps/$npm_package_name@$npm_package_version/*",
+    "deploy:prod": "npm run build && npm run s3:sync && npm run cloudfront:invalidate",
+    "s3:sync": "aws s3 sync dist/ s3://$npm_package_config_bucket_name/apps/$npm_package_name@$npm_package_version",
+    "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development"
+  },
   "config": {
     "bucket_name": "finance.appfocused.com",
     "cloudfront_distribution": "E72JA65H2AFCX"
@@ -11,23 +18,10 @@
     "@appfocused/ui-components": "0.0.5",
     "@material-ui/icons": "4.2.0",
     "concurrently": "^4.1.1",
-    "react": "16.8.6",
+    "react": "16.9.0",
     "react-dom": "16.8.6",
     "rxjs": "6.5.2"
   },
-  "scripts": {
-    "build": "webpack --mode=production",
-    "s3:sync": "aws s3 sync dist/ s3://$npm_package_config_bucket_name/apps/$npm_package_name@$npm_package_version",
-    "cloudfront:invalidate": "aws cloudfront create-invalidation --distribution-id=$npm_package_config_cloudfront_distribution --paths /apps/$npm_package_name@$npm_package_version/*",
-    "deploy:prod": "npm run build && npm run s3:sync && npm run cloudfront:invalidate",
-    "start": "webpack-dev-server --config webpack.config.js --progress --colors --open --mode=development"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
     "@appfocused/build-scripts": "^0.0.1",
     "@types/node": "11.9.4",
@@ -40,5 +34,11 @@
     "webpack": "^4.29.3",
     "webpack-cli": "3.3.2",
     "webpack-dev-server": "3.3.1"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
