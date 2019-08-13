@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { ThemeProvider, defaultTheme } from '@appfocused/ui-components/dist/es';
+import {
+  ThemeProvider,
+  defaultTheme,
+  StylesProvider,
+  createGenerateClassName
+} from '@appfocused/ui-components/dist/es';
 import { Page } from '../Page/Page';
 
 interface Props {
@@ -7,11 +12,17 @@ interface Props {
   theme?: any;
 }
 
+const generateClassName = createGenerateClassName({
+  productionPrefix: 'port-jss'
+});
+
 export const App: React.FunctionComponent<Props> = props => {
   const { theme = defaultTheme } = props;
   return (
-    <ThemeProvider theme={theme}>
-      <Page />
-    </ThemeProvider>
+    <StylesProvider generateClassName={generateClassName}>
+      <ThemeProvider theme={theme}>
+        <Page />
+      </ThemeProvider>
+    </StylesProvider>
   );
 };

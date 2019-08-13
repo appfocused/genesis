@@ -2,12 +2,20 @@ import * as React from 'react';
 import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
-import { ThemeProvider, defaultTheme, useTheme, Heading } from '@appfocused/ui-components/dist/es';
+import {
+  ThemeProvider,
+  defaultTheme,
+  useTheme,
+  Heading,
+  StylesProvider,
+  createGenerateClassName
+} from '@appfocused/ui-components/dist/es';
 import { Home } from '../home';
 import { MicroFrontend } from '../microfrontend';
 import { darkTheme } from '../../themes/dark';
 import { lightTheme } from '../../themes/light';
-import { Page } from '../Page';
+import { Page } from '../page';
+import { ErrorPage } from '../error-page';
 
 const baseUrl = '';
 const portfoliosHost = `${baseUrl}/apps/@appfocused/portfolios@0.0.1`;
@@ -22,35 +30,35 @@ export const App: React.FunctionComponent = props => {
 
   const handleDarkTheme = () => {
     setTheme(darkTheme);
-    console.log('DARK');
   };
 
   const handleLightTheme = () => {
     setTheme(lightTheme);
-    console.log('LIGHT');
   };
+
+  const generateClassName = createGenerateClassName({
+    productionPrefix: 'shell-jss'
+  });
 
   return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <Page>
-          <Heading>Finance App v0.0.1</Heading>
-          <div>
-            Themes:{' '}
-            <a href="#" onClick={handleLightTheme}>
-              Light
-            </a>
-            &nbsp;
-            <a href="#" onClick={handleDarkTheme}>
-              Dark
-            </a>
-          </div>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/portfolios" component={Portfolios} />
-          </Switch>
-        </Page>
-      </ThemeProvider>
+      <StylesProvider generateClassName={generateClassName}>
+        <ThemeProvider theme={theme}>
+          <Page>
+            <Heading>Finance App v0.0.1</Heading>
+            <div>
+              Themes: <a onClick={handleLightTheme}>Light</a>
+              &nbsp;
+              <a onClick={handleDarkTheme}>Dark</a>
+            </div>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/portfolios" component={Portfolios} />
+              <Route component={ErrorPage} />
+            </Switch>
+          </Page>
+        </ThemeProvider>
+      </StylesProvider>
     </BrowserRouter>
   );
 };
