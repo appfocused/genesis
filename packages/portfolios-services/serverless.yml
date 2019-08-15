@@ -21,7 +21,7 @@ custom:
   customDomain:
     domainName: ${self:custom.domains.${self:custom.stage}}
     certificateName: "www.appfocused.com"
-    basePath: "portfolios"
+    basePath: "api-finance"
     stage: ${self:custom.stage}
     createRoute53Record: true
 

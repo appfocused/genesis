@@ -6,12 +6,12 @@ import * as portfoliosController from './controllers/portfolios';
 
 const app = express();
 
-const baseUrl = '/portfolios';
+const baseUrl = '/api-finance';
 
 app.use(cors());
 app.use(bodyParser.json({ strict: false }));
 
-app.post(`${baseUrl}/`, portfoliosController.createPortfolio);
-app.get(`${baseUrl}/version`, homeController.index);
+app.post(`${baseUrl}/portfolios`, portfoliosController.createPortfolio);
+app.get(`${baseUrl}/portfolios/version`, homeController.index);
 
 export default app;
