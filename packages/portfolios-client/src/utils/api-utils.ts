@@ -1,5 +1,5 @@
-const base = 'api';
+const base = '/api-finance';
 
 export const endpoints = {
-  portfolios: `/${base}/portfolios`
+  portfolios: `${base}/portfolios`
 };

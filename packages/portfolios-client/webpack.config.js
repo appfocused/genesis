@@ -4,7 +4,10 @@ if (baseConfig.devServer) {
   baseConfig.devServer = {
     ...baseConfig.devServer,
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api-finance': {
+        target: 'http://localhost:3000',
+        pathRewrite: { '^/api-finance': '' }
+      }
     }
   };
 }

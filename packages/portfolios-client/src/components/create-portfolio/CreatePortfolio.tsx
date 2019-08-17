@@ -9,6 +9,7 @@ import { endpoints } from '../../utils/api-utils';
 
 export const CreatePortfolio: React.FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [portfolioName, setPortfolioName] = React.useState();
 
   const handleModalClose = () => {
     setIsOpen(false);
@@ -18,20 +19,23 @@ export const CreatePortfolio: React.FunctionComponent = () => {
     setIsOpen(true);
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPortfolioName(e.target.value);
+  };
+
   const handleCreatePortfolio = () => {
     const url = endpoints.portfolios;
-    const data = { test: '123' };
+    const data = { name: portfolioName, ccy: 'GBP' };
     fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'no-cors', // no-cors, cors, *same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
+      method: 'POST',
+      cache: 'no-cache',
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      redirect: 'follow', // manual, *follow, error
-      referrer: 'no-referrer', // no-referrer, *client
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
+      redirect: 'follow',
+      referrer: 'no-referrer',
+      body: JSON.stringify(data)
     });
   };
 
@@ -44,7 +48,7 @@ export const CreatePortfolio: React.FunctionComponent = () => {
         <>
           <Heading>Create Portfolio</Heading>
           <p>lorem ipsum</p>
-          <Input />
+          <Input onChange={handleInputChange} />
           <Button intent="primary" onClick={handleCreatePortfolio}>
             Create
           </Button>

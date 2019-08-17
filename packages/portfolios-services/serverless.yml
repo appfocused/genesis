@@ -57,7 +57,7 @@ functions:
     handler: index.handler
     events:
       - http:
-          path: portfolios/
+          path: portfolios
           method: post
           cors: true
 
