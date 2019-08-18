@@ -4,6 +4,7 @@ import * as uuid from 'uuid';
 
 import { DataMapper } from '@aws/dynamodb-data-mapper';
 import { Portfolio } from '../models/portfolio';
+import { resetWarningCache } from 'prop-types';
 
 const mapper = new DataMapper({
   client: dynamoDb
@@ -15,12 +16,8 @@ export const createPortfolio = (req: Request, res: Response) => {
   const createdAt = new Date().toISOString();
   const portfolioId = uuid.v4();
 
-  // const portfolio = {
-  //   ...new Portfolio(),
-  //   ...{ pk: portfolioId, sk: userId, data: 'TEST', ccy, createdAt }
-  // };
-
   const portfolio = Object.assign(new Portfolio(), {
+    pk: portfolioId,
     sk: userId,
     data: name,
     ccy,
@@ -35,35 +32,27 @@ export const createPortfolio = (req: Request, res: Response) => {
       res.json(objectSaved);
     })
     .catch(error => {
-      console.log('>>>>', error);
       res.status(400).json({ error: 'Could not create portfolio' });
     });
 };
 
-// export const createPortfolio = (req: Request, res: Response) => {
-//   const { name, ccy } = req.body;
+export const getPortfolios = async (req: Request, res: Response) => {
+  const username = 'vitkon';
+  const query = {
+    valueConstructor: Portfolio,
+    indexName: 'portfoliosGSI',
+    keyCondition: { sk: username }
+  };
+  let result: any[] = [];
 
-//   const userId = 'vitkon';
-//   const timestamp = new Date().toISOString();
-//   const id = uuid.v4();
+  try {
+    for await (const item of mapper.query(query)) {
+      result.push(item);
+    }
 
-//   const params = {
-//     TableName: PORTFOLIOS_TABLE,
-//     Item: {
-//       id,
-//       name,
-//       ccy: ccy || 'USD',
-//       timestamp,
-//       userId
-//     }
-//   };
-
-//   dynamoDb.put(params, error => {
-//     if (error) {
-//       console.log(error);
-//       res.status(400).json({ error: 'Could not create portfolio' });
-//     }
-
-//     res.json({ id, userId, name, ccy, timestamp });
-//   });
-// };
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: 'Could not retrieve portfolio' });
+  }
+};

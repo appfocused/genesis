@@ -18,6 +18,7 @@ app.use(
 );
 
 app.post(`${baseUrl}/portfolios`, portfoliosController.createPortfolio);
+app.get(`${baseUrl}/portfolios`, portfoliosController.getPortfolios);
 app.get(`${baseUrl}/portfolios/version`, homeController.index);
 
 export default app;

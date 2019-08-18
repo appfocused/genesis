@@ -28,6 +28,14 @@ sls create_domain --stage prod
 sls create_domain --stage dev
 ```
 
+### Local DynamoDB browser
+
+https://github.com/aaronshaf/dynamodb-admin
+
+```
+dynamodb-admin
+```
+
 ## Create a Todo
 
 ```
