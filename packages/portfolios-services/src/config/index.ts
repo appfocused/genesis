@@ -1,4 +1,5 @@
 import * as AWS from 'aws-sdk';
+import { DataMapper } from '@aws/dynamodb-data-mapper';
 
 export const PORTFOLIOS_TABLE = process.env.PORTFOLIOS_TABLE || 'portfolios-dev';
 export const IS_OFFLINE = process.env.IS_OFFLINE;
@@ -17,3 +18,7 @@ const getDynamoDB = () => {
 };
 
 export const dynamoDb = getDynamoDB();
+
+export const mapper = new DataMapper({
+  client: dynamoDb
+});

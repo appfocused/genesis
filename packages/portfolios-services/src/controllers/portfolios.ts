@@ -1,14 +1,17 @@
 import { Request, Response } from 'express';
-import { dynamoDb, PORTFOLIOS_TABLE } from '../config';
 import * as uuid from 'uuid';
 
-import { DataMapper } from '@aws/dynamodb-data-mapper';
 import { Portfolio } from '../models/portfolio';
-import { resetWarningCache } from 'prop-types';
+import { mapper } from '../config';
 
-const mapper = new DataMapper({
-  client: dynamoDb
-});
+const mapDTO = (item: Portfolio) => {
+  return {
+    id: item.pk,
+    name: item.data,
+    ccy: item.ccy,
+    createdAt: item.createdAt
+  };
+};
 
 export const createPortfolio = (req: Request, res: Response) => {
   const { name, ccy } = req.body;
@@ -29,7 +32,8 @@ export const createPortfolio = (req: Request, res: Response) => {
   mapper
     .put(portfolio)
     .then(objectSaved => {
-      res.json(objectSaved);
+      const [response] = [objectSaved].map(mapDTO);
+      res.json(response);
     })
     .catch(error => {
       res.status(400).json({ error: 'Could not create portfolio' });
@@ -50,7 +54,7 @@ export const getPortfolios = async (req: Request, res: Response) => {
       result.push(item);
     }
 
-    res.json(result);
+    res.json(result.map(mapDTO));
   } catch (err) {
     console.log(err);
     res.status(400).json({ error: 'Could not retrieve portfolio' });
