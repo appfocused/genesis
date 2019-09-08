@@ -19,6 +19,7 @@ app.use(
 
 app.post(`${baseUrl}/portfolios`, portfoliosController.createPortfolio);
 app.get(`${baseUrl}/portfolios`, portfoliosController.getPortfolios);
+app.delete(`${baseUrl}/portfolios/:id`, portfoliosController.deletePortfolio);
 app.get(`${baseUrl}/portfolios/version`, homeController.index);
 
 export default app;

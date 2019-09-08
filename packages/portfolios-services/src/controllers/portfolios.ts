@@ -60,3 +60,19 @@ export const getPortfolios = async (req: Request, res: Response) => {
     res.status(400).json({ error: 'Could not retrieve portfolio' });
   }
 };
+
+export const deletePortfolio = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const userId = 'vitkon';
+  console.log({ id });
+  const portfolioToDelete = Object.assign(new Portfolio(), { pk: id, sk: userId });
+  mapper
+    .delete(portfolioToDelete)
+    .then(deletedPortfolio => {
+      const response = deletedPortfolio ? mapDTO(deletedPortfolio) : deletePortfolio;
+      res.json(response);
+    })
+    .catch(error => {
+      res.status(400).json({ error: 'Could not delete portfolio' });
+    });
+};

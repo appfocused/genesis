@@ -34,7 +34,7 @@
     "@types/node": "^12.6.1",
     "@types/uuid": "^3.4.5",
     "rimraf": "2.6.3",
-    "serverless": "^1.48.2",
+    "serverless": "^1.50.0",
     "serverless-domain-manager": "^3.2.6",
     "serverless-dynamodb-local": "^0.2.38",
     "serverless-offline": "^5.7.2",
