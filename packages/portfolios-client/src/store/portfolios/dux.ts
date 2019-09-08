@@ -1,6 +1,5 @@
 import { ActionMap, actionCreator } from '../types';
 import { PortfolioModel } from './reducers';
-import { forOfStatement } from '@babel/types';
 
 export enum ActionTypes {
   Fetch = 'Portfolio/FETCH',
