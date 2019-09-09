@@ -34,6 +34,13 @@ export const CreatePortfolio: React.FunctionComponent = () => {
           setIsModalOpen(false);
         }
       })
+      // createPortfolio({
+      //   name: portfolioName,
+      //   ccy: 'GBP',
+      //   onSuccess: () => {
+      //     setIsModalOpen(false);
+      //   }
+      // })
     );
   };
 
