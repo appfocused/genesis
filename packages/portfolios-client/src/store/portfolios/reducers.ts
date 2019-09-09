@@ -5,27 +5,31 @@ import {
   FETCH_PORTFOLIOS_ERROR,
   FETCH_PORTFOLIOS
 } from './actions';
+import { ActionTypes } from './dux';
 
 export interface PortfoliosState {
-  portfolios: ReducerEntity<Portfolio>;
+  portfolios: ReducerEntity<PortfolioModel>;
 }
 
-export interface Portfolio {
+export interface PortfolioModel {
   id: string;
   name: string;
   ccy: string;
   createAt: string;
 }
 
-const initialState: ReducerEntity<Portfolio> = {
+const initialState: ReducerEntity<PortfolioModel> = {
   data: [],
   isLoading: false,
   hasError: false
 };
 
-export function portfoliosReducer(state = initialState, action: any): ReducerEntity<Portfolio> {
+export function portfoliosReducer(
+  state = initialState,
+  action: any
+): ReducerEntity<PortfolioModel> {
   switch (action.type) {
-    case FETCH_PORTFOLIOS: {
+    case ActionTypes.Fetch: {
       return {
         ...state,
         isLoading: true,
@@ -33,7 +37,7 @@ export function portfoliosReducer(state = initialState, action: any): ReducerEnt
       };
     }
 
-    case FETCH_PORTFOLIOS_SUCCESS: {
+    case ActionTypes.FetchSuccess: {
       return {
         ...state,
         data: action.payload,
@@ -41,7 +45,7 @@ export function portfoliosReducer(state = initialState, action: any): ReducerEnt
       };
     }
 
-    case FETCH_PORTFOLIOS_ERROR: {
+    case ActionTypes.FetchError: {
       return {
         ...state,
         hasError: true

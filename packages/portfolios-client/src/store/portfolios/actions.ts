@@ -1,5 +1,5 @@
 import { createAction } from '../types';
-import { Portfolio } from './reducers';
+import { PortfolioModel } from './reducers';
 import { deletePortfolioService } from '../../services/portfolios';
 
 export const FETCH_PORTFOLIOS = 'FETCH_PORTFOLIOS';

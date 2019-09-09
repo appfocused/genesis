@@ -1,25 +1,24 @@
 import * as React from 'react';
 import { Heading } from '@appfocused/ui-components/dist/es';
-import { getPortfoliosService } from '../../services/portfolios';
-import { fetchPortfolios, deletePortfolio } from '../../store/portfolios/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerEntity } from '../../store/types';
-import { Portfolio } from '../../store/portfolios/reducers';
+import { PortfolioModel } from '../../store/portfolios/reducers';
 import { AppState } from '../../store/store';
+import { createAction, ActionTypes } from '../../store/portfolios/dux';
 
 export const Portfolios: React.FunctionComponent<{}> = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(fetchPortfolios());
+    dispatch(createAction(ActionTypes.Fetch));
   }, []);
 
-  const { isLoading, data } = useSelector<AppState, ReducerEntity<Portfolio>>(
+  const { isLoading, data } = useSelector<AppState, ReducerEntity<PortfolioModel>>(
     state => state.portfoliosReducer
   );
 
   const handleDelete = (e: React.SyntheticEvent, portfolioId: string) => {
     e.preventDefault();
-    dispatch(deletePortfolio(portfolioId));
+    dispatch(createAction(ActionTypes.Delete, { id: portfolioId }));
   };
 
   return (
