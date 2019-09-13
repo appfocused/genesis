@@ -22,3 +22,5 @@ yarn bootstrap
 - https://github.com/palantir/blueprint
 - https://github.com/a-tarasyuk/react-webpack-typescript-babel
 - https://github.com/facebook/create-react-app
+  https://martinfowler.com/articles/micro-frontends.html
+- https://github.com/shakyShane/action-typed

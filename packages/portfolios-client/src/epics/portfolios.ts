@@ -8,42 +8,32 @@ import {
   createPortfolioService,
   deletePortfolioService
 } from '../services/portfolios';
-import {
-  fetchPortfoliosSuccess,
-  fetchPortfoliosError,
-  FETCH_PORTFOLIOS,
-  CREATE_PORTFOLIO,
-  fetchPortfolios,
-  createPortfolioSuccess,
-  deletePortfolio,
-  DELETE_PORTFOLIO,
-  deletePortfolioSuccess
-} from '../store/portfolios/actions';
 import { AxiosResponse } from 'axios';
-import { ActionTypes, PortfolioActions } from '../store/portfolios/dux';
-import { createAction } from '../store/types';
+import { ActionTypes, PortfolioActions, createAction, TypeMap } from '../store/portfolios/dux';
+import { PortfolioModel } from '../store/portfolios/reducers';
 
-const portfoliosResponseMapper = ({ data }: AxiosResponse) => {
+const portfoliosResponseMapper = <T = any>({ data }: AxiosResponse<T>) => {
   return data;
 };
 
-const getPortfoliosEpic: Epic<any, any, AppState> = (action$, store) =>
+const getPortfoliosEpic: Epic<PortfolioActions, any, AppState> = (action$, store) =>
   action$.pipe(
-    ofType(ActionTypes.Fetch),
-    switchMap(action =>
+    ofType<PortfolioActions, TypeMap[ActionTypes.Fetch]>(ActionTypes.Fetch),
+    switchMap(() =>
       from(getPortfoliosService()).pipe(
-        map(portfoliosResponseMapper),
+        map(res => portfoliosResponseMapper<PortfolioModel[]>(res)),
         map(res => createAction(ActionTypes.FetchSuccess, res)),
         catchError(error => of(createAction(ActionTypes.FetchError, error)))
       )
     )
   );
 
-const createPortfolioEpic: Epic<any, any, AppState> = (action$, store) =>
+const createPortfolioEpic: Epic<PortfolioActions, any, AppState> = (action$, store) =>
   action$.pipe(
-    ofType(ActionTypes.Create),
+    ofType<PortfolioActions, TypeMap[ActionTypes.Create]>(ActionTypes.Create),
     switchMap(action =>
       from(createPortfolioService(action.payload)).pipe(
+        map(res => portfoliosResponseMapper<PortfolioModel>(res)),
         map(res => createAction(ActionTypes.CreateSuccess, res)),
         map(() => createAction(ActionTypes.Fetch)),
         tap(action.payload.onSuccess),
@@ -54,9 +44,10 @@ const createPortfolioEpic: Epic<any, any, AppState> = (action$, store) =>
 
 const deletePortfolioEpic: Epic<any, any, AppState> = (action$, store) => {
   return action$.pipe(
-    ofType(ActionTypes.Delete),
+    ofType<PortfolioActions, TypeMap[ActionTypes.Delete]>(ActionTypes.Delete),
     switchMap(action =>
       from(deletePortfolioService(action.payload.id)).pipe(
+        map(res => portfoliosResponseMapper<PortfolioModel>(res)),
         map(res => createAction(ActionTypes.DeleteSuccess, res)),
         map(() => createAction(ActionTypes.Fetch)),
         catchError(error => of(console.warn(error)))

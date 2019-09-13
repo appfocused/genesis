@@ -1,11 +1,5 @@
-import { ReducerEntity, Action, ActionWithPayload } from '../types';
-import {
-  PortfolioActions,
-  FETCH_PORTFOLIOS_SUCCESS,
-  FETCH_PORTFOLIOS_ERROR,
-  FETCH_PORTFOLIOS
-} from './actions';
-import { ActionTypes } from './dux';
+import { ReducerEntity } from '../types';
+import { ActionTypes, PortfolioActions } from './dux';
 
 export interface PortfoliosState {
   portfolios: ReducerEntity<PortfolioModel>;
@@ -26,7 +20,7 @@ const initialState: ReducerEntity<PortfolioModel> = {
 
 export function portfoliosReducer(
   state = initialState,
-  action: any
+  action: PortfolioActions
 ): ReducerEntity<PortfolioModel> {
   switch (action.type) {
     case ActionTypes.Fetch: {

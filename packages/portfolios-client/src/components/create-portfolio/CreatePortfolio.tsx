@@ -6,7 +6,6 @@ import Input from '@appfocused/ui-components/dist/es/components/Input';
 
 import AddIcon from '@material-ui/icons/AddOutlined';
 import { useDispatch } from 'react-redux';
-import { createPortfolio } from '../../store/portfolios/actions';
 import { ActionTypes, createAction } from '../../store/portfolios/dux';
 
 export const CreatePortfolio: React.FunctionComponent = () => {
@@ -35,13 +34,6 @@ export const CreatePortfolio: React.FunctionComponent = () => {
           setIsModalOpen(false);
         }
       })
-      // createPortfolio({
-      //   name: portfolioName,
-      //   ccy: 'GBP',
-      //   onSuccess: () => {
-      //     setIsModalOpen(false);
-      //   }
-      // })
     );
   };
 
