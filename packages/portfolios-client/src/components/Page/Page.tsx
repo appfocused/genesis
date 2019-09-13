@@ -4,6 +4,7 @@ import { Lookup } from '../lookup/lookup';
 import Heading from '@appfocused/ui-components/dist/es/components/Heading';
 import { Asset } from '../@types/interfaces';
 import { CreatePortfolio } from '../create-portfolio';
+import { Portfolios } from '../portfolios';
 
 export const Page: React.FunctionComponent = props => {
   const classes = useStyles();
@@ -23,6 +24,7 @@ export const Page: React.FunctionComponent = props => {
           Portfolios
         </Heading>
         <CreatePortfolio />
+        <Portfolios />
         <Lookup onSelect={handleAssetSelection} />
       </header>
     </div>

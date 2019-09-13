@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Provider } from 'react-redux';
 import {
   ThemeProvider,
   defaultTheme,
@@ -6,6 +7,7 @@ import {
   createGenerateClassName
 } from '@appfocused/ui-components/dist/es';
 import { Page } from '../Page/Page';
+import { configureStore } from '../../store/store';
 
 interface Props {
   history: History;
@@ -16,13 +18,17 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'port-jss'
 });
 
+const store = configureStore();
+
 export const App: React.FunctionComponent<Props> = props => {
   const { theme = defaultTheme } = props;
   return (
-    <StylesProvider generateClassName={generateClassName}>
-      <ThemeProvider theme={theme}>
-        <Page />
-      </ThemeProvider>
-    </StylesProvider>
+    <Provider store={store}>
+      <StylesProvider generateClassName={generateClassName}>
+        <ThemeProvider theme={theme}>
+          <Page />
+        </ThemeProvider>
+      </StylesProvider>
+    </Provider>
   );
 };

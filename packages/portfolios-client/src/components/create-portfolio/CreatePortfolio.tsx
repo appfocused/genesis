@@ -5,18 +5,20 @@ import Modal from '@appfocused/ui-components/dist/es/components/Modal';
 import Input from '@appfocused/ui-components/dist/es/components/Input';
 
 import AddIcon from '@material-ui/icons/AddOutlined';
-import { endpoints } from '../../utils/api-utils';
+import { useDispatch } from 'react-redux';
+import { ActionTypes, createAction } from '../../store/portfolios/dux';
 
 export const CreatePortfolio: React.FunctionComponent = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [portfolioName, setPortfolioName] = React.useState();
+  const dispatch = useDispatch();
 
   const handleModalClose = () => {
-    setIsOpen(false);
+    setIsModalOpen(false);
   };
 
   const handleModalOpen = () => {
-    setIsOpen(true);
+    setIsModalOpen(true);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,19 +26,15 @@ export const CreatePortfolio: React.FunctionComponent = () => {
   };
 
   const handleCreatePortfolio = () => {
-    const url = endpoints.portfolios;
-    const data = { name: portfolioName, ccy: 'GBP' };
-    fetch(url, {
-      method: 'POST',
-      cache: 'no-cache',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow',
-      referrer: 'no-referrer',
-      body: JSON.stringify(data)
-    });
+    dispatch(
+      createAction(ActionTypes.Create, {
+        name: portfolioName,
+        ccy: 'GBP',
+        onSuccess: () => {
+          setIsModalOpen(false);
+        }
+      })
+    );
   };
 
   return (
@@ -44,7 +42,7 @@ export const CreatePortfolio: React.FunctionComponent = () => {
       <Button intent="secondary" onClick={handleModalOpen}>
         <AddIcon /> Add Portfolio
       </Button>
-      <Modal isOpen={isOpen} onClose={handleModalClose}>
+      <Modal isOpen={isModalOpen} onClose={handleModalClose}>
         <>
           <Heading>Create Portfolio</Heading>
           <p>lorem ipsum</p>
