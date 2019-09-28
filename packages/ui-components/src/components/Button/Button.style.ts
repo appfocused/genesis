@@ -22,6 +22,10 @@ const getMainColor = (palette: Palette, props: ButtonProps) => {
       return palette.secondary.main;
     }
 
+    case 'danger': {
+      return palette.error.main;
+    }
+
     default: {
       return defaultColor;
     }
@@ -77,7 +81,6 @@ const getButtonIntent = (palette: Palette) => (props: ButtonProps) => {
   const backgroundColor = getBackgroundColor(palette, props);
   const borderColor = getBorderColor(palette, props);
 
-  console.log(props); // eslint-disable-line no-console
   return {
     backgroundColor,
     color,
@@ -109,7 +112,6 @@ export const useStyles = makeStyles(
         ...typography.button,
         boxSizing: 'border-box',
         minWidth: spacing(8),
-        margin: spacing(1),
         padding: spacing(1, 2),
         borderRadius: shape.borderRadius,
         color: palette.getContrastText(defaultColor),

@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { Heading } from '@appfocused/ui-components/dist/es';
+import { Heading, Modal } from '@appfocused/ui-components/dist/es';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerEntity } from '../../store/types';
 import { PortfolioModel } from '../../store/portfolios/reducers';
 import { AppState } from '../../store/store';
-import { createAction, ActionTypes } from '../../store/portfolios/dux';
+import { createAction, ActionTypes, PortfolioActions } from '../../store/portfolios/dux';
+import { confirmAction } from '../Confirm/ConfirmationService';
 
 export const Portfolios: React.FunctionComponent<{}> = () => {
   const dispatch = useDispatch();
+
   React.useEffect(() => {
     dispatch(createAction(ActionTypes.Fetch));
   }, []);
@@ -16,9 +18,16 @@ export const Portfolios: React.FunctionComponent<{}> = () => {
     state => state.portfoliosReducer
   );
 
-  const handleDelete = (e: React.SyntheticEvent, portfolioId: string) => {
+  const handleDelete = async (e: React.SyntheticEvent, { id, name }: PortfolioModel) => {
     e.preventDefault();
-    dispatch(createAction(ActionTypes.Delete, { id: portfolioId }));
+    const isConfirmed = await confirmAction({
+      confirmationText: `Delete "${name}" portfolio?`,
+      confirmButtonText: 'Delete'
+    });
+
+    if (isConfirmed) {
+      dispatch(createAction(ActionTypes.Delete, { id }));
+    }
   };
 
   return (
@@ -31,7 +40,7 @@ export const Portfolios: React.FunctionComponent<{}> = () => {
         return (
           <div key={portfolio.id}>
             {portfolio.name}{' '}
-            <a href="#" onClick={(e: React.SyntheticEvent) => handleDelete(e, portfolio.id)}>
+            <a href="#" onClick={(e: React.SyntheticEvent) => handleDelete(e, portfolio)}>
               Delete
             </a>
           </div>
