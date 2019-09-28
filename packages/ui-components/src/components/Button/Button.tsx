@@ -11,7 +11,7 @@ export type ButtonProps = {
   type?: 'submit' | 'button' | 'reset';
   fullWidth?: boolean;
   disabled?: boolean;
-  intent?: 'primary' | 'secondary' | 'default';
+  intent?: 'primary' | 'secondary' | 'default' | 'danger';
   size?: 'small' | 'medium' | 'large';
   variant?: 'text' | 'outlined' | 'filled';
 } & InputControlHandlers;
