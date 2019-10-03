@@ -7,15 +7,17 @@
   "scripts": {
     "release": "lerna publish --ignore=portfolios",
     "app:portfolios": "concurrently \"cd packages/portfolios-client && npm start\" \"cd packages/portfolios-services && npm start\"",
-    "clean-deps": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + &&  rm -f yarn.lock && rm -fr */**/yarn.lock"
+    "clean-deps": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + &&  rm -f yarn.lock && rm -fr */**/yarn.lock",
+    "update": "lernaupdate"
   },
   "devDependencies": {
     "lerna": "^3.11.1",
+    "lerna-update-wizard": "^0.16.0",
     "prettier": "^1.16.4",
     "yarn": "1.13.0"
   },
   "resolutions": {
-    "@types/react": "16.8.23"
+    "@types/react": "16.9.4"
   },
   "workspaces": {
     "packages": [
