@@ -1,5 +1,6 @@
 {
   "name": "@appfocused/build-scripts",
+  "license": "MIT",
   "version": "0.0.1",
   "main": "index.js",
   "devDependencies": {
@@ -11,7 +12,7 @@
     "@babel/preset-typescript": "7.3.3",
     "babel-loader": "8.0.5",
     "css-loader": "2.1.0",
-    "eslint": "5.14.1",
+    "eslint": "5.16.0",
     "eslint-loader": "2.1.2",
     "fork-ts-checker-webpack-plugin": "0.5.2",
     "html-webpack-plugin": "3.2.0",
@@ -28,6 +29,5 @@
     "webpack-assets-manifest": "^3.1.1",
     "webpack-cli": "3.3.2",
     "webpack-dev-server": "3.3.1"
-  },
-  "license": "MIT"
+  }
 }
