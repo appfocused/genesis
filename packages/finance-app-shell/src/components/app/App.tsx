@@ -6,7 +6,7 @@ import {
   ThemeProvider,
   defaultTheme,
   useTheme,
-  Heading,
+  Typography,
   StylesProvider,
   createGenerateClassName
 } from '@appfocused/ui-components/dist/es';
@@ -45,12 +45,14 @@ export const App: React.FunctionComponent = props => {
       <StylesProvider generateClassName={generateClassName}>
         <ThemeProvider theme={theme}>
           <Page>
-            <Heading>Finance App v0.0.1</Heading>
-            <div>
+            <Typography variant="h1" paragraph>
+              Finance App v0.0.1
+            </Typography>
+            <Typography variant="body2">
               Themes: <a onClick={handleLightTheme}>Light</a>
               &nbsp;
               <a onClick={handleDarkTheme}>Dark</a>
-            </div>
+            </Typography>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/portfolios" component={Portfolios} />

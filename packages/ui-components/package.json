@@ -7,7 +7,7 @@
     "url": "https://github.com/appfocused/genesis",
     "directory": "packages/ui-components"
   },
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "files": [

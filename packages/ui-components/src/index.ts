@@ -4,7 +4,7 @@ export * from './components/Autocomplete';
 export { default as Button } from './components/Button';
 export * from './components/Button';
 
-export { default as Heading } from './components/Heading';
+export { default as Typography } from './components/Typography';
 
 export { default as Input } from './components/Input';
 export * from './components/Input';

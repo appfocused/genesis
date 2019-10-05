@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BehaviorSubject } from 'rxjs';
 import Autocomplete from '@appfocused/ui-components/dist/es/components/Autocomplete';
-import Heading from '@appfocused/ui-components/dist/es/components/Heading';
+import Typography from '@appfocused/ui-components/dist/es/components/Typography';
 
 import { getReactiveSuggestions } from './service';
 import { Asset } from '../@types/interfaces';
@@ -56,7 +56,7 @@ export const Lookup: React.FunctionComponent<Props> = ({ onSelect, value: valueP
 
   return (
     <>
-      <Heading>Lookup</Heading>
+      <Typography variant="h2">Lookup</Typography>
       <Autocomplete
         suggestions={suggestions}
         onChange={handleChange}

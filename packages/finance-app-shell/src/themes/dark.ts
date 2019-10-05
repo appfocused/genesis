@@ -1,5 +1,7 @@
 import { createTheme } from '@appfocused/ui-components/dist/es';
 
+const mainTextColor = '#fff';
+
 export const darkTheme = createTheme({
   palette: {
     type: 'dark',
@@ -10,7 +12,7 @@ export const darkTheme = createTheme({
       main: '#00bd7b'
     },
     text: {
-      primary: '#fff'
+      primary: mainTextColor
     },
     background: {
       default: '#424251',

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Heading, Modal } from '@appfocused/ui-components/dist/es';
+import { Typography, Modal } from '@appfocused/ui-components/dist/es';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerEntity } from '../../store/types';
 import { PortfolioModel } from '../../store/portfolios/reducers';
@@ -32,16 +32,16 @@ export const Portfolios: React.FunctionComponent<{}> = () => {
 
   return (
     <>
-      <Heading>Portfolios</Heading>
+      <Typography variant="h2">Portfolios</Typography>
 
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Typography>Loading...</Typography>}
 
       {data.map(portfolio => {
         return (
           <div key={portfolio.id}>
-            {portfolio.name}{' '}
+            <Typography>{portfolio.name} </Typography>
             <a href="#" onClick={(e: React.SyntheticEvent) => handleDelete(e, portfolio)}>
-              Delete
+              <Typography>Delete</Typography>
             </a>
           </div>
         );
