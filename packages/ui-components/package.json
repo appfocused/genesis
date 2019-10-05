@@ -7,7 +7,7 @@
     "url": "https://github.com/appfocused/genesis",
     "directory": "packages/ui-components"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "files": [
@@ -29,8 +29,8 @@
   },
   "types": "dist/es",
   "dependencies": {
-    "@material-ui/core": "4.3.0",
-    "@material-ui/styles": "4.3.0",
+    "@material-ui/core": "4.5.0",
+    "@material-ui/styles": "4.5.0",
     "jss": "10.0.0-alpha.16"
   },
   "peerDependencies": {

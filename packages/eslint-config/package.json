@@ -1,12 +1,13 @@
 {
   "name": "@appfocused/eslint-config",
-  "version": "0.0.1",
   "description": "Shared ESLint config",
-  "main": "index.js",
   "license": "MIT",
+  "version": "0.0.1",
+  "main": "index.js",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "1.4.2",
-    "eslint": "5.14.1",
+    "eslint": "5.16.0",
+    "eslint-config-prettier": "6.3.0",
     "typescript": "3.3.3"
   }
 }
