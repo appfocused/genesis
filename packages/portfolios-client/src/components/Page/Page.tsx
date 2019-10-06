@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStyles } from './Page.style';
 import { Lookup } from '../lookup/lookup';
-import Heading from '@appfocused/ui-components/dist/es/components/Heading';
+import Typography from '@appfocused/ui-components/dist/es/components/Typography';
 import { Asset } from '../@types/interfaces';
 import { CreatePortfolio } from '../create-portfolio';
 import { Portfolios } from '../portfolios';
@@ -20,9 +20,7 @@ export const Page: React.FunctionComponent = props => {
   return (
     <div className={classes.root}>
       <header>
-        <Heading className={classes.header} level={1}>
-          Portfolios
-        </Heading>
+        <Typography variant="h1">Portfolios</Typography>
         <CreatePortfolio />
         <Portfolios />
         <Lookup onSelect={handleAssetSelection} />

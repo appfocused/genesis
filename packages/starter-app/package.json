@@ -9,7 +9,7 @@
   "dependencies": {
     "@appfocused/common": "^0.0.1",
     "@appfocused/eslint-config": "^0.0.1",
-    "@appfocused/ui-components": "0.0.5",
+    "@appfocused/ui-components": "0.0.7",
     "react": "16.10.1",
     "react-dom": "16.10.1"
   },

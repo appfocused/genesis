@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Heading from '@appfocused/ui-components/dist/es/components/Heading';
+import Typography from '@appfocused/ui-components/dist/es/components/Typography';
 import Button from '@appfocused/ui-components/dist/es/components/Button';
 import Modal from '@appfocused/ui-components/dist/es/components/Modal';
 import Input from '@appfocused/ui-components/dist/es/components/Input';
@@ -44,7 +44,7 @@ export const CreatePortfolio: React.FunctionComponent = () => {
       </Button>
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
         <>
-          <Heading>Create Portfolio</Heading>
+          <Typography>Create Portfolio</Typography>
           <p>lorem ipsum</p>
           <Input onChange={handleInputChange} />
           <Button intent="primary" onClick={handleCreatePortfolio}>
