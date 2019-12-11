@@ -15,7 +15,8 @@ interface Props {
 }
 
 const generateClassName = createGenerateClassName({
-  productionPrefix: 'port-jss'
+  productionPrefix: 'port-jss',
+  disableGlobal: true
 });
 
 const store = configureStore();
