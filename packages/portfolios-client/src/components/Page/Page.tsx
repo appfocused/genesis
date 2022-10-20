@@ -20,7 +20,7 @@ export const Page: React.FunctionComponent = props => {
   return (
     <div className={classes.root}>
       <header>
-        <Typography variant="h1">Portfolios</Typography>
+        <Typography variant="h1">Portfolioz</Typography>
         <CreatePortfolio />
         <Portfolios />
         <Lookup onSelect={handleAssetSelection} />
